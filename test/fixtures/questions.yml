@@ -1,0 +1,17 @@
+qq1:
+  id: 1
+  title: テスト１？
+  text: テスト１ですよー。
+  member_id: 1
+  category_id: 1
+  created_at: 2012-04-14 00:00:00
+  updated_at: 2012-04-14 00:00:00
+
+qq2:
+  id: 2
+  title: テスト２？
+  text: これはテスト２ですか？
+  member_id: 1
+  category_id: 2
+  created_at: 2012-04-14 00:00:00
+  updated_at: 2012-04-14 00:00:00

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+music:
+  id: 1
+  name: エンタメ・音楽
+
+sports:
+  id: 2
+  name: 生活・一般・スポーツ
+
+science:
+  id: 3
+  name: 科学・技術
+
+poritics:
+  id: 4
+  name: 政治
+
+game:
+  id: 5
+  name: アニメ・ゲーム・絵
+
+others:
+  id: 6
+  name: その他

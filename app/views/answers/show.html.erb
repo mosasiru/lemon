@@ -1,0 +1,20 @@
+<h1>各アンケートのページ</h1>
+<h2>各アンケートの集計結果載せるよー</h2>
+<p>質問：<%= @question.title %></p>
+<p>説明：<%= @question.text %></p>
+<p>質問者：<%= @questioner.username  %></p>
+<p>カテゴリー：<%= @category.name %></p>
+<p>円グラフ<br>
+てかとりあえず、<br>
+「はい」を選んだ人数：<%= @option1.count %><br>
+「いいえ」を選んだ人数：<%= @option2.count %></p>
+<p>「はい」を選んだ人のコメント</p>
+<% @option1.each do |option1| %>
+<ul><%= option1.comment %></ul>
+<% end %>
+<p>「いいえ」を選んだ人のコメント</p>
+<% @option2.each do |option2| %>
+<ul><%= option2.comment %></ul>
+<% end %>
+
+<%= link_to '戻る', '/answers/index/'+@member.id.to_s %>
