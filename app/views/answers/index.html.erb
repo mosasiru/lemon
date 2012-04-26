@@ -1,0 +1,44 @@
+<h1>アンケート_さらにfixed!!!!</h1>
+<h2>アンケートページへようこそ！</h2>
+
+<p>ここに@listから取ってきて一覧を表示するよー</p>
+
+<table>
+
+<tr><th>質問</th><th>はい</th><th>いいえ</th><th>投票</th></tr>
+
+<% @questions.each do |question| %>
+<tr><td><%= link_to  question.title , '/answers/show/'+@member.id.to_s+'/'+question.id.to_s %></td>
+<td>
+<% k=0
+@answer1.each do |answer1| 
+  if question.id==answer1.question_id
+    k = k+1
+  end
+end %><%= k %></td>
+<td>
+<% k=0
+@answer2.each do |answer2|
+  if question.id==answer2.question_id
+    k=k+1
+  end
+end %><%= k %>
+</td>
+<td>
+<%= form_tag({ :action => 'acreate/'+question.id.to_s}) do %><%#, :question_id => question.id, :member_id => @member.id }) do %>
+<%= hidden_field :answer, :question_id, { :value => question.id }%>
+<%= hidden_field :answer, :member_id, { :value => @member.id } %>
+<label><%= radio_button :answer, :ans, '1' %>はい</label>
+<label><%= radio_button :answer, :ans, '2' %>いいえ</label>
+<label>コメント<%= text_field :answer, :comment %></label>
+<%# hidden_field :answer, :question_id, { :value => question.id } %>
+<%# hidden_field :answer, :member_id, { :value => @member.id  } %>
+<%= submit_tag '送信' %>
+<% end %>
+</td>
+</tr>
+<% end %>
+
+</table>
+
+<%= link_to('アンケートの新規作成','/answers/new/1') %>
