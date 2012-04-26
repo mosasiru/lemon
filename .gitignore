@@ -13,9 +13,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+<<<<<<< HEAD
 *.class
 *.pyc
 *.pyo
 master
 master
 master
+=======
+>>>>>>> test2
