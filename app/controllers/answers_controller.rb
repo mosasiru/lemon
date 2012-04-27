@@ -38,7 +38,7 @@ class AnswersController < ApplicationController
   def acreate
     @answer = Answer.new(params[:answer])
     if @answer.save
-      redirect_to("show/" + :member_id +'/'+ :question_id )#+@answer.member_id.to_s+"/"+@answer.question_id.to_s)
+      redirect_to("/answers/show/" + params[:member_id] +'/'+ params[:question_id] )#+@answer.member_id.to_s+"/"+@answer.question_id.to_s)
     else
       render :action => "index"
     end
