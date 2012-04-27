@@ -26,7 +26,7 @@ end %><%= k %></td>
 end %><%= k %>
 </td>
 <td>
-<%= form_tag({ :action => 'acreate/'+question.id.to_s}) do %><%#, :question_id => question.id, :member_id => @member.id }) do %>
+<%= form_tag({ :action => 'acreate/'+@member.id.to_s+'/'+question.id.to_s}) do %><%#, :question_id => question.id, :member_id => @member.id }) do %>
 <%= hidden_field :answer, :question_id, { :value => question.id }%>
 <%= hidden_field :answer, :member_id, { :value => @member.id } %>
 <label><%= radio_button :answer, :ans, '1' %>はい</label>

@@ -4,7 +4,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer :question_id
       t.integer :member_id
       t.integer :ans
-      t.text :comment
+      t.string :comment
 
       t.timestamps
     end

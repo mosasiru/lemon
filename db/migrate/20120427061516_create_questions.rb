@@ -3,8 +3,8 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.string :title
       t.text :text
-      t.integer :member_id
       t.integer :category_id
+      t.integer :member_id
 
       t.timestamps
     end

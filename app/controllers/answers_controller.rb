@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   def index
-    @questions = Questions.all
+    @questions = Question.all
     @answer1 = Answer.find_all_by_ans(1)
     @answer2 = Answer.find_all_by_ans(2)
     @member = Member.find(params[:member_id])
@@ -9,11 +9,11 @@ class AnswersController < ApplicationController
   end
 
   def new
-    @questions = Questions.new
+    @questions = Question.new
   end
 
   def show
-    @question = Questions.find(params[:question_id])
+    @question = Question.find(params[:question_id])
     @questioner = Member.find( @question.member_id )
     @category = Category.find( @question.category_id )
     @option1 = Answer.find_all_by_question_id_and_ans(params[:question_id],1)
@@ -23,11 +23,11 @@ class AnswersController < ApplicationController
 
   def form_tag
     @answer = Answer.new
-    @question = Questions.new
+    @question = Question.new
   end
 
   def qcreate
-    @question = Questions.new(params[:questions])
+    @question = Question.new(params[:questions])
     if @question.save
       redirect_to("/answers/index/1")
     else
@@ -38,7 +38,7 @@ class AnswersController < ApplicationController
   def acreate
     @answer = Answer.new(params[:answer])
     if @answer.save
-      redirect_to("show/"+@answer.question_id.to_s)
+      redirect_to("show/" + :member_id +'/'+ :question_id )#+@answer.member_id.to_s+"/"+@answer.question_id.to_s)
     else
       render :action => "index"
     end
