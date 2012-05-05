@@ -31,7 +31,7 @@ end %><%= k %>
 <td>
 <%= form_tag({ :action => 'acreate/'+question.id.to_s}) do %>
 <%= hidden_field :answer, :question_id, { :value => question.id }%>
-<%# hidden_field :answer, :member_id, { :value => @member.id } %>
+<%= hidden_field :answer, :member_id, { :value => @user } %>
 
 <label><%= radio_button :answer, :ans, '1' %>はい</label>
 <label><%= radio_button :answer, :ans, '2' %>いいえ</label>
@@ -46,4 +46,6 @@ end %><%= k %>
 
 </table>
 
-<%= link_to('アンケートの新規作成','/answers/new') %>
+<p><%= link_to('アンケートの新規作成','/answers/new') %></p>
+
+<p><%= link_to 'ログアウト', [:destroy, :user_session], {:method => "delete"} %></p>
