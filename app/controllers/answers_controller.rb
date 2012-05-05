@@ -32,6 +32,8 @@ class AnswersController < ApplicationController
     @questioner = Member.find( @question.member_id )
     @category = Category.find( @question.category_id )
     @option1 = Answer.find_all_by_question_id_and_ans(params[:question_id],1)
+#    @tester = @option1.Member.all
+#    @option1.membername = Member.find(@option1.member_id)
     @option2 = Answer.find_all_by_question_id_and_ans(params[:question_id],2)
 #    @member = Member.find(params[:member_id])
   end

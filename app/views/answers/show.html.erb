@@ -10,7 +10,7 @@
 「いいえ」を選んだ人数：<%= @option2.count %></p>
 <p>「はい」を選んだ人のコメント</p>
 <% @option1.each do |option1| %>
-<ul><%= option1.comment %>（<%= option1.member_id %>）</ul>
+<ul><%= option1.comment %>（<%= option1.member_id %>）<%= @tester %></ul>
 <% end %>
 <p>「いいえ」を選んだ人のコメント</p>
 <% @option2.each do |option2| %>
