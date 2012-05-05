@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  title: 質問１
+  text: 質問１の説明
+  category_id: 1
+  member_id: 1
+
+two:
+  id: 2
+  title: 質問２
+  text: 質問２の説明
+  category_id: 1
+  member_id: 1

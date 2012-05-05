@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  username: aaa
+  password: aaa
+  sex: 1
+  age: 50
+
+two:
+  id: 2
+  username: bbb
+  password: bbb
+  sex: 2
+  age: 25

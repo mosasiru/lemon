@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  question_id: 1
+  member_id: 1
+  ans: 1
+  comment: yes!!
+
+two:
+  id: 2
+  question_id: 2
+  member_id: 1
+  ans: 2
+  comment: no!!
