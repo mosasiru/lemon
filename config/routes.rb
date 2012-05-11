@@ -1,5 +1,17 @@
 Lemon::Application.routes.draw do
 
+  root :to => 'welcome#index'
+  get 'answers', :to => 'answers#index', :as => :user_root
+  
+#  match ':controller(/:action(/:member_id(/:question_id)))(.:format)'
+   match ':controller(/:action(/:question_id))(.:format)'
+
+  devise_for :users
+
+  
+
+#  get "welcome/index"
+
 #  get "answers/new"
 
 #  get "answers/show"
@@ -59,6 +71,6 @@ Lemon::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-   match ':controller(/:action(/:member_id(/:question_id)))(.:format)'
-#   match ':controller(/:action(/:id))(.:format)'
+
+
 end
