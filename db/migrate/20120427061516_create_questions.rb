@@ -5,6 +5,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.text :text
       t.integer :category_id
       t.integer :member_id
+      t.integer :type
 
       t.timestamps
     end

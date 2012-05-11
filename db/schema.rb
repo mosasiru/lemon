@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(:version => 20120505025253) do
 
   create_table "answers", :force => true do |t|
-    t.integer  "question_id"
-    t.integer  "member_id"
-    t.integer  "ans"
-    t.string   "comment"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer "question_id"
+    t.integer "member_id"
+    t.integer "ans"
+    t.string  "comment"
   end
+
+  add_index "answers", ["question_id", "member_id"], :name => "index_answers_on_question_id_and_member_id", :unique => true
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20120505025253) do
     t.string   "username"
     t.integer  "sex"
     t.date     "birthday"
+    t.integer  "point"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20120505025253) do
     t.text     "text"
     t.integer  "category_id"
     t.integer  "member_id"
+    t.integer  "type"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

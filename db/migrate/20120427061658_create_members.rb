@@ -5,6 +5,7 @@ class CreateMembers < ActiveRecord::Migration
       t.string :username
       t.integer :sex
       t.date :birthday
+      t.integer :point
 
       t.timestamps
     end
