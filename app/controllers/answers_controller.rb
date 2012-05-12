@@ -46,28 +46,46 @@ class AnswersController < ApplicationController
 
   def qcreate
     @question = Question.new(params[:question])
-    if @question.save
-      redirect_to("/answers/index")
-    else
-      render :action => "new"
+    respond_to do |format|
+      if @question.save
+        format.html { redirect_to("/answers/index", :notice => 'question was successfully created.')}
+        format.xml  { render :xml => @question, :status => :created, :location => "/answers/index"}
+#      redirect_to("/answers/index")
+      else
+        format.html { render :action => "new"}
+        format.xml  { render :xml => @question.errors, :status => :unprocessable_entity }
+#        render :action => "new"
+      end
     end
   end
 
   def acreate
     @answer = Answer.new(params[:answer])
-    if @answer.save
-      redirect_to("/answers/show/" + params[:question_id] )
-    else
-      render :action => "index"
+    respond_to do |format|
+      if @answer.save
+        format.html { redirect_to("/answers/show/"+params[:question_id], :notice => 'answer was successfully created.')}
+        format.xml  { render :xml => @answer, :status => :created, :location => '/answers/show/'+params[:question_id]}
+#        redirect_to("/answers/show/" + params[:question_id] )
+      else
+        format.html { render :action => "index"}
+        format.xml  { render :xml => @answer.errors, :status => :unprocessable_entity }
+#        render :action => "index"
+      end
     end
   end
 
   def mcreate
     @member = Member.new(params[:member])
-    if @member.save
-      redirect_to("/answers/index")
-    else
-      render :action => "newuser"
+    respond_to do |format|
+      if @member.save
+        format.html { redirect_to("/answers/index", :notice => 'member was successfully created.')}
+        format.xml  { render :xml => @member, :status => :created, :location => "/answers/index"}
+#        redirect_to("/answers/index")
+      else
+        format.html { render :action => "newuser"}
+        format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }
+#        render :action => "newuser"
+      end
     end
   end
 
