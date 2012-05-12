@@ -29,17 +29,22 @@ end %><%= k %></td>
 end %><%= k %>
 </td>
 <td>
+<% if Question.where(:id => question.id.to_s, :member_id => @user).exists? %>
+あなたの質問に投票することはできません。
+<% elsif Answer.where(:question_id => question.id.to_s, :member_id => @user).exists? %>
+既に投票済みです。
+<% else %>
 <%= form_tag({ :action => 'acreate/'+question.id.to_s}) do %>
 <%= hidden_field :answer, :question_id, { :value => question.id }%>
 <%= hidden_field :answer, :member_id, { :value => @user } %>
-
 <label><%= radio_button :answer, :ans, '1' %>はい</label>
 <label><%= radio_button :answer, :ans, '2' %>いいえ</label>
 <label>コメント<%= text_field :answer, :comment %></label>
 <%# hidden_field :answer, :question_id, { :value => question.id } %>
 <%# hidden_field :answer, :member_id, { :value => @member.id  } %>
 <%= submit_tag '送信' %>
-<% end %>
+<% end %><%#if %>
+<% end %> <%#form_tag %>
 </td>
 </tr>
 <% end %>
