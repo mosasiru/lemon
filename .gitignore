@@ -13,7 +13,7 @@
 /log/*.log
 /tmp
 # Ignore database
-/congig/database.yml
+/config/database.yml
 <<<<<<< HEAD
 *.class
 *.pyc
