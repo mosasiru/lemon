@@ -42,5 +42,3 @@ gem 'therubyrhino'
 gem 'execjs'
 
 gem 'devise'
-
-gem 'unicorn'

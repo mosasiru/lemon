@@ -52,7 +52,7 @@ production:
   database: answers_production
   host: localhost
   username: root
-  password: atlocal
+  password: 
   encording: utf8
   pool: 5
   timeout: 5000
