@@ -27,3 +27,4 @@ master
 *.pyc
 *.pyo
 mosasiru
+/nbproject/private/

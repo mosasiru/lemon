@@ -37,6 +37,13 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+group :deployment do
+  gem 'capistrano'
+  gem 'capistrano_colors'
+  gem 'capistrano-ext'
+  gem 'capistrano_rsync_with_remote_cache'
+end
+
 gem 'therubyrhino'
 
 gem 'execjs'
@@ -44,3 +51,4 @@ gem 'execjs'
 gem 'devise'
 
 gem 'unicorn'
+
