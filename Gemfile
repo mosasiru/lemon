@@ -52,3 +52,4 @@ gem 'devise'
 
 gem 'unicorn'
 
+gem 'twitter-bootstrap-rails'

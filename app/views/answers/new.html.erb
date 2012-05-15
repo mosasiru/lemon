@@ -9,6 +9,6 @@
 <tr><th>カテゴリー</th><td><%= select :question, :category_id, options_for_select({'エンタメ・音楽'=>1,'生活・一般・スポーツ'=>2,'科学・技術'=>3,'政治'=>4,'アニメ・ゲーム・絵'=>5,'その他'=>6},1) %></td></tr>
 <%# select_tag :category_id, option_from_collection_for_select(@category,"id","name")  %>
 
-<tr><th></th><td><%= submit_tag '送信' %></td></tr>
+<tr><th></th><td><%= submit_tag '送信', :class => 'btn' %></td></tr>
 <% end %>
 </table>

@@ -1,0 +1,84 @@
+@import "twitter/bootstrap/bootstrap";
+body { padding-top: 60px; }
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+@fontAwesomeEotPath: asset-path('fontawesome-webfont.eot');
+@fontAwesomeWoffPath: asset-path('fontawesome-webfont.woff');
+@fontAwesomeTtfPath: asset-path('fontawesome-webfont.ttf');
+@fontAwesomeSvgzPath: asset-path('fontawesome-webfont.svgz');
+@fontAwesomeSvgPath: asset-path('fontawesome-webfont.svg');
+
+// Font Awesome
+@import "fontawesome";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/less.html for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+//ここからいじった 参考：https://github.com/ppworks/tbrsample/commit/74c9594235323947f540a1a138f80c624bc77142
+
+@black: #170709;
+@grayDarker:            lighten(@black, 16%);
+@grayDark:              lighten(@black, 32%);
+@gray:                  lighten(@black, 48%);
+@grayLight:             lighten(@black, 64%);
+@grayLighter:           lighten(@black, 80%);
+@white:                 lighten(@black, 97%);
+//@btnBackground:          lighten(@black, 80%);
+
+.hero-unit {
+  background-color: lighten(@black, 90%);
+  margin-top: 19px;
+  >h1 {
+    font-size: 24px;
+  }
+}
+
+.well {
+  background-color: lighten(@black, 90%);
+  border: 1px solid @grayLighter;
+  border: 1px solid rgba(5, 5, 10,.05);
+  .box-shadow(inset 01px1px rgba(5, 5, 10,.05));
+  blockquote {
+    border-color: #ddd;
+    border-color: rgba(0,0,0,.15);
+  }
+}
+
+.table-striped {
+  tbody {
+    tr:nth-child(odd) td,
+    tr:nth-child(odd) th {
+      background-color: lighten(@black, 93%);
+    }
+  }
+}
+
+.table {
+  tbody tr:hover td,
+  tbody tr:hover th {
+    background-color: lighten(@black, 90%);
+  }
+}
+
+.form-actions {
+  background-color: lighten(@black, 90%);
+  border-top: 1px solid lighten(@black, 93%);
+}
+
+.navbar-fixed-bottom{
+  height: 1.5em;
+  line-height: 1em;
+}
