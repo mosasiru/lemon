@@ -11,12 +11,12 @@ set :rvm_ruby_string, 'ruby-1.9.3-p194'
 set :rvm_type, :user
 
 # リポジトリの設定
-set :application, "lemon"
+set :application, "prolemon"
 set :repository,  "git://github.com/mosasiru/lemon.git"
 set :scm, :git
 set :branch, "mosasiru"
 set :deploy_via, :remote_cache
-set :deploy_to, "/home/mosa/public/#{application}"
+set :deploy_to, "/home/mosa/public/production/#{application}"
 set :rails_env, "production"
 
 role :web, "www7411uf.sakura.ne.jp:10022"  #デプロイ先SSHポートを指定（デフォルトは22）
@@ -43,7 +43,7 @@ after "deploy:setup", "setup:fix_permissions"
 # Unicorn用に起動/停止タスクを変更
 namespace :deploy do
   task :start, :roles => :app do
-    run "cd #{current_path}; bundle exec unicorn_rails -c config/unicorn.rb -E #{rails_env} -D"
+    run "cd #{current_path}; rvmsudo bundle exec unicorn_rails -c /home/mosa/public/current/config/unicorn.rb -E #{rails_env} -D"
   end
   task :restart, :roles => :app do
     if File.exist? "/tmp/unicorn_#{application}.pid"

@@ -1,4 +1,4 @@
-application = 'lemon'
+application = 'prolemon'
 
 listen "/tmp/unicorn_#{application}.sock"
 pid "/tmp/unicorn_#{application}.pid"
@@ -7,13 +7,13 @@ worker_processes 6
 preload_app true
 
 # capistrano 用に RAILS_ROOT を指定
-working_directory "/home/mosa/public/#{application}"
+working_directory "/home/mosa/public/production/#{application}"
 
-if ENV['RAILS_ENV'] == 'production'
-  shared_path = "/home/mosa/public/#{application}/shared"
-  stderr_path = "#{shared_path}/log/unicorn.stderr.log"
-  stdout_path = "#{shared_path}/log/unicorn.stdout.log"
-end
+#if ENV['RAILS_ENV'] == 'production'
+#  shared_path = "/home/mosa/public/production/#{application}/shared"
+#  stderr_path = "#{shared_path}/log/unicorn.stderr.log"
+#  stdout_path = "#{shared_path}/log/unicorn.stdout.log"
+#end
 
 # ログ
 stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
