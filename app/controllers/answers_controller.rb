@@ -24,6 +24,11 @@ class AnswersController < ApplicationController
   def new
   @user = current_user.id
     @questions = Question.new
+    @option1 = Option.new
+    @option2 = Option.new
+    @option3 = Option.new
+    @option4 = Option.new
+    @option5 = Option.new
   end
 
   def show
@@ -42,12 +47,33 @@ class AnswersController < ApplicationController
     @answer = Answer.new
     @question = Question.new
     @member = Member.new
+    @option1 = Option.new
+    @option2 = Option.new
+    @option3 = Option.new
+    @option4 = Option.new
+    @option5 = Option.new
   end
 
   def qcreate
     @question = Question.new(params[:question])
+    @question.save
+    @option1 = Option.new(params[:option1])
+    @option1.order = 1
+    @option1.question_id = @question.id
+    @option2 = Option.new(params[:option2])
+    @option2.order = 2
+    @option2.question_id = @question.id
+    @option3 = Option.new(params[:option3])
+    @option3.order = 3
+    @option3.question_id = @question.id
+    @option4 = Option.new(params[:option4])
+    @option4.order = 4
+    @option4.question_id = @question.id
+    @option5 = Option.new(params[:option5])
+    @option5.order = 5
+    @option5.question_id = @question.id
     respond_to do |format|
-      if @question.save
+      if @option1.save && @option2.save && @option3.save && @option4.save && @option5.save
         format.html { redirect_to("/answers/index", :notice => 'question was successfully created.')}
         format.xml  { render :xml => @question, :status => :created, :location => "/answers/index"}
 #      redirect_to("/answers/index")
