@@ -7,6 +7,9 @@ class AnswersController < ApplicationController
       @questions = Question.all
       @answer1 = Answer.find_all_by_ans(1)
       @answer2 = Answer.find_all_by_ans(2)
+      @answer3 = Answer.find_all_by_ans(3)
+      @answer4 = Answer.find_all_by_ans(4)
+      @answer5 = Answer.find_all_by_ans(5)
       @member = Member.find_by_user_id(@user)
 #    @member = Member.find(params[:member_id])
       @answer = Answer.new

@@ -7,7 +7,7 @@
 
 <table class="table table-striped">
 
-<tr><th>質問</th><th>はい</th><th>いいえ</th><th>投票</th></tr>
+<tr><th>質問</th><th>回答１</th><th>回答２</th><th>回答３</th><th>回答４</th><th>回答５</th><th>投票</th></tr>
 
 <% @questions.each do |question| %>
 <tr><td><%= link_to  question.title , '/answers/show/'+question.id.to_s %></td>
@@ -22,6 +22,30 @@ end %><%= k %></td>
 <% k=0
 @answer2.each do |answer2|
   if question.id==answer2.question_id
+    k=k+1
+  end
+end %><%= k %>
+</td>
+<td>
+<% k=0
+@answer3.each do |answer3|
+  if question.id==answer3.question_id
+    k=k+1
+  end
+end %><%= k %>
+</td>
+<td>
+<% k=0
+@answer4.each do |answer4|
+  if question.id==answer4.question_id
+    k=k+1
+  end
+end %><%= k %>
+</td>
+<td>
+<% k=0
+@answer5.each do |answer5|
+  if question.id==answer5.question_id
     k=k+1
   end
 end %><%= k %>
