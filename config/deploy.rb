@@ -43,7 +43,7 @@ after "deploy:setup", "setup:fix_permissions"
 # Unicorn用に起動/停止タスクを変更
 namespace :deploy do
   task :start, :roles => :app do
-    run "cd #{current_path}; rvmsudo bundle exec unicorn_rails -c /home/mosa/public/current/config/unicorn.rb -E #{rails_env} -D"
+    run "cd #{current_path}; rvmsudo bundle exec unicorn_rails -c /home/mosa/public/production/#{application}/current/config/unicorn.rb -E #{rails_env} -D"
   end
   task :restart, :roles => :app do
     if File.exist? "/tmp/unicorn_#{application}.pid"

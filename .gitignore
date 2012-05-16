@@ -12,7 +12,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+# netbeans
 .project
+/nbproject/*
 # Ignore database
 #/config/database.yml
 <<<<<<< HEAD
