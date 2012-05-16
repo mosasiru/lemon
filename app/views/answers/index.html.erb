@@ -59,8 +59,12 @@ end %><%= k %>
 <%= form_tag({ :action => 'acreate/'+question.id.to_s}) do %>
 <%= hidden_field :answer, :question_id, { :value => question.id }%>
 <%= hidden_field :answer, :member_id, { :value => @user } %>
-<label><%= radio_button :answer, :ans, '1' %>はい</label>
-<label><%= radio_button :answer, :ans, '2' %>いいえ</label>
+<label><%= radio_button :answer, :ans, '1' %>回答１</label>
+<label><%= radio_button :answer, :ans, '2' %>回答２</label>
+<label><%= radio_button :answer, :ans, '3' %>回答３</label>
+<label><%= radio_button :answer, :ans, '4' %>回答４</label>
+<label><%= radio_button :answer, :ans, '5' %>回答５</label>
+
 <label>コメント<%= text_field :answer, :comment %></label>
 <%# hidden_field :answer, :question_id, { :value => question.id } %>
 <%# hidden_field :answer, :member_id, { :value => @member.id  } %>
