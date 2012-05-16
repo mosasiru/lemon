@@ -44,6 +44,9 @@ class AnswersController < ApplicationController
 #    @option1.membername = Member.find(@option1.member_id)
     @option2 = Answer.find_all_by_question_id_and_ans(params[:question_id],2)
 #    @member = Member.find(params[:member_id])
+    @option3 = Answer.find_all_by_question_id_and_ans(params[:question_id],3)
+    @option4 = Answer.find_all_by_question_id_and_ans(params[:question_id],4)
+    @option5 = Answer.find_all_by_question_id_and_ans(params[:question_id],5)
   end
 
   def form_tag
