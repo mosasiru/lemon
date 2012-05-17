@@ -37,12 +37,21 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+group :deployment, :test do
+  gem 'rspec-rails'
+  gem 'guard-rails'
+  gem 'rb-fsevent' if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-livereload'
+end
+
 group :deployment do
   gem 'capistrano'
   gem 'capistrano_colors'
   gem 'capistrano-ext'
   gem 'capistrano_rsync_with_remote_cache'
 end
+
+
 
 gem 'therubyrhino'
 
@@ -53,3 +62,4 @@ gem 'devise'
 gem 'unicorn'
 
 gem 'twitter-bootstrap-rails'
+
