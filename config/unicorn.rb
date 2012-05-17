@@ -8,7 +8,9 @@ preload_app true
 
 # capistrano 用に RAILS_ROOT を指定
 working_directory "/home/mosa/public/production/#{application}"
-
+if application == 'prelemon'
+  working_directory "/home/mosa/public/production/#{application}/current"
+end
 #if ENV['RAILS_ENV'] == 'production'
 #  shared_path = "/home/mosa/public/production/#{application}/shared"
 #  stderr_path = "#{shared_path}/log/unicorn.stderr.log"

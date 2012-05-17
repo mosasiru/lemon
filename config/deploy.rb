@@ -25,7 +25,9 @@ role :db,  "www7411uf.sakura.ne.jp:10022", :primary => true
 
 # SSHの設定
 set :user, "mosa"
-set :sudo_password, 'Password:'
+set :sudo_password, "lemonade"
+set :password, "lemonade"
+
 ssh_options[:port] = "10022"
 ssh_options[:forward_agent] = true
 #ssh_options[:keys] = %w(/home/mosa/.ssh/id_rsa)
@@ -47,21 +49,31 @@ namespace :deploy do
   end
   task :restart, :roles => :app do
     if File.exist? "/tmp/unicorn_#{application}.pid"
-      run "kill -s USR2 `cat /tmp/unicorn_#{application}.pid`"
+      sudo "kill -s USR2 `cat /tmp/unicorn_#{application}.pid`"
     end
   end
   task :stop, :roles => :app do
-    run "kill -s QUIT `cat /tmp/unicorn.pid`"
+    sudo "kill -s QUIT `cat /tmp/unicorn_#{application}.pid`"
+  end
+
+
+  task :precompile, :roles => :web, :except => { :no_release => true } do
+     from = source.next_revision(current_revision)
+     if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
+       run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
+     else
+       logger.info "Skipping asset pre-compilation because there were no asset changes"
+     end
   end
 end
 
 # Rails3.1.1のProduction用
-namespace :assets do
-  task :precompile, :roles => :web do
-    run "cd #{current_path} && RAILS_ENV=production bundle exec rake assets:precompile"
-  end
-  task :cleanup, :roles => :web do
-    run "cd #{current_path} && RAILS_ENV=production bundle exec rake assets:clean"
-  end
-end
-after :deploy, "assets:precompile"
+#namespace :assets do
+#  task :precompile, :roles => :web do
+#    run "cd #{current_path} && RAILS_ENV=production bundle exec rake assets:precompile"
+#  end
+#  task :cleanup, :roles => :web do
+#    run "cd #{current_path} && RAILS_ENV=production bundle exec rake assets:clean"
+#  end
+#end
+#after :deploy, "assets:precompile"

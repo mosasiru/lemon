@@ -2,7 +2,7 @@
 
 class HelloController < ApplicationController
   def index
-    render :text => 'こんにちは、世界！'
+    render :text => 'こんにちは、下界！'
   end
   def view
     @msg = 'こんにちは、世界！こちらはビューです！'
