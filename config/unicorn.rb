@@ -8,7 +8,7 @@ preload_app true
 
 # capistrano 用に RAILS_ROOT を指定
 working_directory "/home/mosa/public/production/#{application}"
-if application == 'prelemon'
+if application == 'prolemon'
   working_directory "/home/mosa/public/production/#{application}/current"
 end
 #if ENV['RAILS_ENV'] == 'production'
