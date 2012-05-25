@@ -1,9 +1,19 @@
 
 <h1>アンケート</h1>
 <h2 class="well">アンケートページへようこそ！</h2>
-<p><%= @member.username%>さんこんにちは！</p>
+<p><% if user_signed_in? %><%= @member.username%><% else %>ゲスト<% end %>さんこんにちは！</p>
 
 <p>ここに@listから取ってきて一覧を表示するよ！</p>
+
+
+<p><%= link_to('アンケートの新規作成','/answers/new') %></p>
+
+<p><% if user_signed_in? %>
+	<%= link_to 'ログアウト', [:destroy, :user_session], {:method => "delete"} %>
+	<% else %>
+	<%= link_to 'ログイン', [:new, :user_session] %>　<%= link_to '新規ユーザー登録', [:new, :user_registration]%>
+	<% end %></p>
+
 
 <table class="table table-striped">
 
@@ -76,7 +86,3 @@ end %><%= k %>
 <% end %>
 
 </table>
-
-<p><%= link_to('アンケートの新規作成','/answers/new') %></p>
-
-<p><%= link_to 'ログアウト', [:destroy, :user_session], {:method => "delete"} %></p>

@@ -32,4 +32,6 @@
 <ul><%= option5.comment %></ul>
 <% end %>
 
+<p><%= link_to('詳細を見る','/answers/detail/'+@question.id.to_s) %></p>
+
 <%= link_to '戻る', '/answers/index' %>

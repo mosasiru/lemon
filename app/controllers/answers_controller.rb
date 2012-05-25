@@ -1,21 +1,33 @@
 class AnswersController < ApplicationController
-  before_filter :authenticate_user! 
+  before_filter :authenticate_user!, :except=>[:show, :index]
 
   def index
-  @user = current_user.id
-    if Member.where(:user_id => @user).exists?
+    if user_signed_in?
+      @user = current_user.id
+      if Member.where(:user_id => @user).exists?
+        @questions = Question.all
+        @answer1 = Answer.find_all_by_ans(1)
+        @answer2 = Answer.find_all_by_ans(2)
+        @answer3 = Answer.find_all_by_ans(3)
+        @answer4 = Answer.find_all_by_ans(4)
+        @answer5 = Answer.find_all_by_ans(5)
+        @member = Member.find_by_user_id(@user)
+#      @member = Member.find(params[:member_id])
+        @answer = Answer.new
+        @category = Category.all
+      else
+         redirect_to("/answers/newuser")
+      end
+    else
       @questions = Question.all
       @answer1 = Answer.find_all_by_ans(1)
       @answer2 = Answer.find_all_by_ans(2)
       @answer3 = Answer.find_all_by_ans(3)
       @answer4 = Answer.find_all_by_ans(4)
       @answer5 = Answer.find_all_by_ans(5)
-      @member = Member.find_by_user_id(@user)
-#    @member = Member.find(params[:member_id])
       @answer = Answer.new
       @category = Category.all
-    else
-       redirect_to("/answers/newuser")
+        
     end
   end
   
@@ -35,7 +47,9 @@ class AnswersController < ApplicationController
   end
 
   def show
-  @user = current_user.id
+    if user_signed_in?
+      @user = current_user.id
+    end
     @question = Question.find(params[:question_id])
     @questioner = Member.find( @question.member_id )
     @category = Category.find( @question.category_id )
@@ -47,6 +61,11 @@ class AnswersController < ApplicationController
     @option3 = Answer.find_all_by_question_id_and_ans(params[:question_id],3)
     @option4 = Answer.find_all_by_question_id_and_ans(params[:question_id],4)
     @option5 = Answer.find_all_by_question_id_and_ans(params[:question_id],5)
+  end
+  
+  def detail
+    @question = Question.find(params[:question_id])
+    
   end
 
   def form_tag

@@ -1,6 +1,6 @@
 Lemon::Application.routes.draw do
 
-  root :to => 'welcome#index'
+  root :to => 'answers#index'
   get 'answers', :to => 'answers#index', :as => :user_root
   
 #  match ':controller(/:action(/:member_id(/:question_id)))(.:format)'
