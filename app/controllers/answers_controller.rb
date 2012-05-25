@@ -64,7 +64,15 @@ class AnswersController < ApplicationController
   end
   
   def detail
+    @user = current_user.id
     @question = Question.find(params[:question_id])
+    @questioner = Member.find( @question.member_id )
+    @category = Category.find( @question.category_id )
+    @option1 = Answer.find_all_by_question_id_and_ans(params[:question_id],1)
+    @option2 = Answer.find_all_by_question_id_and_ans(params[:question_id],2)
+    @option3 = Answer.find_all_by_question_id_and_ans(params[:question_id],3)
+    @option4 = Answer.find_all_by_question_id_and_ans(params[:question_id],4)
+    @option5 = Answer.find_all_by_question_id_and_ans(params[:question_id],5)
     
   end
 
@@ -91,14 +99,23 @@ class AnswersController < ApplicationController
     @option3 = Option.new(params[:option3])
     @option3.order = 3
     @option3.question_id = @question.id
+    if @option3.string != ''
+      @option3.save
+    end
     @option4 = Option.new(params[:option4])
     @option4.order = 4
     @option4.question_id = @question.id
+    if @option4.string != ''
+      @option4.save
+    end
     @option5 = Option.new(params[:option5])
     @option5.order = 5
     @option5.question_id = @question.id
+    if @option5.string != ''
+      @option5.save
+    end
     respond_to do |format|
-      if @option1.save && @option2.save && @option3.save && @option4.save && @option5.save
+      if @option1.save && @option2.save
         format.html { redirect_to("/answers/index", :notice => 'question was successfully created.')}
         format.xml  { render :xml => @question, :status => :created, :location => "/answers/index"}
 #      redirect_to("/answers/index")

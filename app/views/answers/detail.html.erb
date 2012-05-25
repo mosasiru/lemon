@@ -1,4 +1,43 @@
 <h1>detail</h1>
+<h2>アンケートの詳しい結果を見られるよー</h2>
+
+<p>質問：<%= @question.title %></p>
+<p>説明：<%= @question.text %></p>
+<p>質問者：<%= @questioner.username  %></p>
+<p>カテゴリー：<%= @category.name %></p>
+
+<p>円グラフ<br>
+てかとりあえず、<br>
+「回答１」を選んだ人数：<%= @option1.count %><br>
+「回答２」を選んだ人数：<%= @option2.count %></p>
+「回答３」を選んだ人数：<%= @option3.count %></p>
+「回答４」を選んだ人数：<%= @option4.count %></p>
+「回答５」を選んだ人数：<%= @option5.count %></p>
+
+<p>・男女別グラフ？？</p>
+<p>・年齢別グラフ？？</p>
+
+<p>「回答１」を選んだ人のコメント</p>
+<% @option1.each do |option1| %>
+<ul><%= option1.comment %>（<%= option1.member_id %>）</ul>
+<% end %>
+<p>「回答２」を選んだ人のコメント</p>
+<% @option2.each do |option2| %>
+<ul><%= option2.comment %>（<%= option2.member_id %>）</ul>
+<% end %>
+<p>「回答３」を選んだ人のコメント</p>
+<% @option3.each do |option3| %>
+<ul><%= option3.comment %>（<%= option3.member_id %>）</ul>
+<% end %>
+<p>「回答４」を選んだ人のコメント</p>
+<% @option4.each do |option4| %>
+<ul><%= option4.comment %>（<%= option4.member_id %>）</ul>
+<% end %>
+<p>「回答５」を選んだ人のコメント</p>
+<% @option5.each do |option5| %>
+<ul><%= option5.comment %>（<%= option5.member_id %>）</ul>
+<% end %>
+
 
 <p><%= link_to('sammaryへ戻る','/answers/show/'+@question.id.to_s) %></p>
 <p><%= link_to('トップへ戻る','/answers/index') %></p>
