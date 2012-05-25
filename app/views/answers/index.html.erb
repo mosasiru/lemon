@@ -6,9 +6,9 @@
 <p>ここに@listから取ってきて一覧を表示するよ！</p>
 
 
-<p><%= link_to('アンケートの新規作成','/answers/new') %></p>
+<p class="right"><%= link_to('アンケートの新規作成','/answers/new') %></p>
 
-<p><% if user_signed_in? %>
+<p class="right"><% if user_signed_in? %>
 	<%= link_to 'ログアウト', [:destroy, :user_session], {:method => "delete"} %>
 	<% else %>
 	<%= link_to 'ログイン', [:new, :user_session] %>　<%= link_to '新規ユーザー登録', [:new, :user_registration]%>
