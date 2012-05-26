@@ -1,14 +1,15 @@
-
+<%= javascript_include_tag 'new' %>
 
 <h1>アンケートの新規作成</h1>
 <h2>下記からアンケートを新規作成しよう～</h2>
+
 
 <table>
 <%= form_tag({ :action => 'qcreate'}) do %>
 <%= hidden_field :question, :member_id, { :value => @user } %>
 
 
-<tr><th>質問</th><td><%= text_field :question, :title, {:size => 25}%>（必須）</td></tr>
+<tr><th>質問</th><td><%= text_field :question, :title, {:size => 25} %>（必須）</td></tr>
 <tr><th>説明</th><td><%= text_area :question, :text, {:cols => 40, :rows => 10} %></td></tr>
 <tr><th>カテゴリー</th><td><%= select :question, :category_id, options_for_select({'エンタメ・音楽'=>1,'生活・一般・スポーツ'=>2,'科学・技術'=>3,'政治'=>4,'アニメ・ゲーム・絵'=>5,'その他'=>6},1) %></td></tr>
 <%# select_tag :category_id, option_from_collection_for_select(@category,"id","name")  %>
@@ -22,3 +23,5 @@
 <tr><th></th><td><%= submit_tag '送信', :class => 'btn' %></td></tr>
 <% end %>
 </table>
+
+<p><%= link_to('戻る','/answers/index') %></p>

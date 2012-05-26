@@ -89,41 +89,44 @@ class AnswersController < ApplicationController
 
   def qcreate
     @question = Question.new(params[:question])
-    @question.save
-    @option1 = Option.new(params[:option1])
-    @option1.order = 1
-    @option1.question_id = @question.id
-    @option2 = Option.new(params[:option2])
-    @option2.order = 2
-    @option2.question_id = @question.id
-    @option3 = Option.new(params[:option3])
-    @option3.order = 3
-    @option3.question_id = @question.id
-    if @option3.string != ''
-      @option3.save
-    end
-    @option4 = Option.new(params[:option4])
-    @option4.order = 4
-    @option4.question_id = @question.id
-    if @option4.string != ''
-      @option4.save
-    end
-    @option5 = Option.new(params[:option5])
-    @option5.order = 5
-    @option5.question_id = @question.id
-    if @option5.string != ''
-      @option5.save
-    end
-    respond_to do |format|
-      if @option1.save && @option2.save
-        format.html { redirect_to("/answers/index", :notice => 'question was successfully created.')}
-        format.xml  { render :xml => @question, :status => :created, :location => "/answers/index"}
-#      redirect_to("/answers/index")
-      else
-        format.html { render :action => "new"}
-        format.xml  { render :xml => @question.errors, :status => :unprocessable_entity }
-#        render :action => "new"
+    if @question.save
+      @option1 = Option.new(params[:option1])
+      @option1.order = 1
+      @option1.question_id = @question.id
+      @option2 = Option.new(params[:option2])
+      @option2.order = 2
+      @option2.question_id = @question.id
+      @option3 = Option.new(params[:option3])
+      if @option3.string != ''
+        @option3.order = 3
+        @option3.question_id = @question.id
+        @option3.save
       end
+      @option4 = Option.new(params[:option4])
+      if @option4.string != ''
+        @option4.order = 4
+        @option4.question_id = @question.id
+        @option4.save
+      end
+      @option5 = Option.new(params[:option5])
+      if @option5.string != ''
+        @option5.order = 5
+        @option5.question_id = @question.id
+        @option5.save
+      end
+      respond_to do |format|
+        if @option1.save && @option2.save
+          format.html { redirect_to("/answers/index", :notice => 'question was successfully created.')}
+          format.xml  { render :xml => @question, :status => :created, :location => "/answers/index"}
+#      redirect_to("/answers/index")
+        else
+          format.html { render :action => "new"}
+          format.xml  { render :xml => @question.errors, :status => :unprocessable_entity }
+#        render :action => "new"
+        end
+      end
+    else
+      redirect_to("/answers/new")
     end
   end
 
