@@ -1,0 +1,48 @@
+<div class="hero-unit">
+  <h1>Lemonであなたの生活をもっと豊かに。</h1>
+</div>
+<h2>アンケートページへようこそ!</h2>
+<ul class="unstyled">
+  <li><%= link_to 'ログイン', [ :new, :user_session ]  %></li>
+  <li><%= link_to 'ユーザー登録', [ :new, :user_registration ]  %></li>
+  <li><%= link_to 'パスワード再発行', [ :new, :user_password ]  %></li>
+</ul>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	
+	$.jqplot('chartDiv',  [[[1, 2],[3,5.12],[5,13.1],[7,33.6],[9,85.9],[11,219.9]]
+	
+	],{ title:'Exponential Line',
+		axes:{yaxis:{min:-10, max:240}},
+		series:[{color:'#5FAB78'}]
+		});
+	})</script>
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+  var cosPoints = []; 
+  for (var i=0; i<2*Math.PI; i+=0.1){ 
+     cosPoints.push([i, Math.cos(i)]); 
+  } 
+  var plot1 = $.jqplot('chartDiv1', [cosPoints], {  
+      series:[{showMarker:false}],
+      axes:{
+        xaxis:{
+          label:'Angle (radians)'
+        },
+        yaxis:{
+          label:'Cosine'
+        }
+      }
+  });
+});</script>
+
+
+<div id="chartDiv" style="width:600px; height:400px;" /></div>
+<div id="chartDiv1" style="width:600px; height:400px;" /></div>
+<div id="chartDiv2" style="width:600px; height:400px;" /></div>
+<div id="chartDiv3" style="width:600px; height:400px;" /></div>
+<div id="chartDiv4" style="width:600px; height:400px;" /></div>

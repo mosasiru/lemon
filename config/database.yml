@@ -16,12 +16,13 @@ development:
   database: answers_development
   host: localhost
   username: root
-  password: root
+  password: lemon
   encording: utf8
   pool: 5
   timeout: 5000
 #  reconnect: false
-#  socket: /var/run/mysqld/mysqld.sock
+#  # JRuby doesn't support socket:
+   #socket: /var/run/mysqld/mysqld.sock
 
 
 # Warning: The database defined as "test" will be erased and
@@ -36,12 +37,13 @@ test:
   database: answers_test
   host: localhost
   username: root
-  password: root
+  password: lemon
   encording: utf8
   pool: 5
   timeout: 5000
   reconnect: false
-  socket: /var/run/mysqld/mysqld.sock
+  # JRuby doesn't support socket:
+  #socket: /var/run/mysqld/mysqld.sock
 
 production:
 #  adapter: sqlite3
@@ -52,9 +54,10 @@ production:
   database: answers_production
   host: localhost
   username: root
-  password: root
+  password: lemon
   encording: utf8
   pool: 5
   timeout: 5000
   reconnect: false
-  socket: /var/run/mysqld/mysqld.sock
+  # JRuby doesn't support socket:
+  #socket: /var/run/mysqld/mysqld.sock

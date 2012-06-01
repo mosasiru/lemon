@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120427061759) do
+ActiveRecord::Schema.define(:version => 20120512153112) do
 
   create_table "answers", :force => true do |t|
-    t.integer  "question_id"
-    t.integer  "member_id"
-    t.integer  "ans"
-    t.string   "comment"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer "question_id"
+    t.integer "member_id"
+    t.integer "ans"
+    t.string  "comment"
   end
+
+  add_index "answers", ["question_id", "member_id"], :name => "index_answers_on_question_id_and_member_id", :unique => true
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -29,12 +29,21 @@ ActiveRecord::Schema.define(:version => 20120427061759) do
   end
 
   create_table "members", :force => true do |t|
+    t.integer  "user_id"
     t.string   "username"
-    t.string   "password"
     t.integer  "sex"
-    t.integer  "age"
+    t.date     "birthday"
+    t.integer  "point"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "options", :force => true do |t|
+    t.integer  "question_id"
+    t.integer  "order"
+    t.string   "string"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "questions", :force => true do |t|
@@ -42,8 +51,27 @@ ActiveRecord::Schema.define(:version => 20120427061759) do
     t.text     "text"
     t.integer  "category_id"
     t.integer  "member_id"
+    t.integer  "type"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

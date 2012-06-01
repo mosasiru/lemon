@@ -1,15 +1,26 @@
-<HEAD>
+
 <h1>アンケート</h1>
-<h2>アンケートページへようこそ！</h2>
+<h2 class="well">アンケートページへようこそ！</h2>
+<p><% if user_signed_in? %><%= @member.username%><% else %>ゲスト<% end %>さんこんにちは！</p>
 
-<p>ここに@listから取ってきて一覧を表示するよー</p>
+<p>ここに@listから取ってきて一覧を表示するよ！</p>
 
-<table>
 
-<tr><th>質問</th><th>はい</th><th>いいえ</th><th>投票</th></tr>
+<p class="right"><%= link_to('アンケートの新規作成','/answers/new') %></p>
+
+<p class="right"><% if user_signed_in? %>
+	<%= link_to 'ログアウト', [:destroy, :user_session], {:method => "delete"} %>
+	<% else %>
+	<%= link_to 'ログイン', [:new, :user_session] %>　<%= link_to '新規ユーザー登録', [:new, :user_registration]%>
+	<% end %></p>
+
+
+<table class="table table-striped">
+
+<tr><th>質問</th><th>回答１</th><th>回答２</th><th>回答３</th><th>回答４</th><th>回答５</th><th>投票</th></tr>
 
 <% @questions.each do |question| %>
-<tr><td><%= link_to  question.title , '/answers/show/'+@member.id.to_s+'/'+question.id.to_s %></td>
+<tr><td><%= link_to  question.title , '/answers/show/'+question.id.to_s %></td>
 <td>
 <% k=0
 @answer1.each do |answer1| 
@@ -26,20 +37,52 @@ end %><%= k %></td>
 end %><%= k %>
 </td>
 <td>
-<%= form_tag({ :action => 'acreate/'+@member.id.to_s+'/'+question.id.to_s}) do %><%#, :question_id => question.id, :member_id => @member.id }) do %>
+<% k=0
+@answer3.each do |answer3|
+  if question.id==answer3.question_id
+    k=k+1
+  end
+end %><%= k %>
+</td>
+<td>
+<% k=0
+@answer4.each do |answer4|
+  if question.id==answer4.question_id
+    k=k+1
+  end
+end %><%= k %>
+</td>
+<td>
+<% k=0
+@answer5.each do |answer5|
+  if question.id==answer5.question_id
+    k=k+1
+  end
+end %><%= k %>
+</td>
+<td>
+<% if Question.where(:id => question.id.to_s, :member_id => @user).exists? %>
+あなたの質問に投票することはできません。
+<% elsif Answer.where(:question_id => question.id.to_s, :member_id => @user).exists? %>
+既に投票済みです。
+<% else %>
+<%= form_tag({ :action => 'acreate/'+question.id.to_s}) do %>
 <%= hidden_field :answer, :question_id, { :value => question.id }%>
-<%= hidden_field :answer, :member_id, { :value => @member.id } %>
-<label><%= radio_button :answer, :ans, '1' %>はい</label>
-<label><%= radio_button :answer, :ans, '2' %>いいえ</label>
+<%= hidden_field :answer, :member_id, { :value => @user } %>
+<label><%= radio_button :answer, :ans, '1' %>回答１</label>
+<label><%= radio_button :answer, :ans, '2' %>回答２</label>
+<label><%= radio_button :answer, :ans, '3' %>回答３</label>
+<label><%= radio_button :answer, :ans, '4' %>回答４</label>
+<label><%= radio_button :answer, :ans, '5' %>回答５</label>
+
 <label>コメント<%= text_field :answer, :comment %></label>
 <%# hidden_field :answer, :question_id, { :value => question.id } %>
 <%# hidden_field :answer, :member_id, { :value => @member.id  } %>
 <%= submit_tag '送信' %>
-<% end %>
+<% end %><%#if %>
+<% end %> <%#form_tag %>
 </td>
 </tr>
 <% end %>
 
 </table>
-
-<%= link_to('アンケートの新規作成','/answers/new/1') %>

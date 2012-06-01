@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  question_id: 1
+  string: はい
+
+two:
+  id: 2
+  question_id: 1
+  string: いいえ
+
+three:
+  id: 3
+  question_id: 2
+  string: はい
+
+four:
+  id: 4
+  question_id: 2
+  string: いいえ
+
+five: 
+  id: 5
+  question_id: 3
+  string: はい
+
+six:
+  id: 6
+  question_id: 3
+  string: いいえ
+
+seven:
+  id: 7
+  question_id: 4
+  string: はい
+
+eight:
+  id: 8
+  question_id: 4
+  string: いいえ

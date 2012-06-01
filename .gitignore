@@ -13,12 +13,14 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-<<<<<<< HEAD
+# netbeans
+.project
+/nbproject/*
+# Ignore database
+#/config/database.yml
 *.class
 *.pyc
 *.pyo
-master
-master
-master
-=======
->>>>>>> test2
+mosasiru
+/nbproject/private/
+/.metadata/

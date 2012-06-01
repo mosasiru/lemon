@@ -1,0 +1,19 @@
+<h1>はじめに</h1>
+<h2>ユーザー情報を入力してください</h2>
+<table>
+<%= form_tag({ :action => 'mcreate'}) do %>
+<%= hidden_field :member, :user_id, { :value => @user } %>
+
+<tr><th>名前</th><td><%= text_field :member, :username, {:size => 15} %></td></tr>
+<tr><th>性別</th><td>
+<label><%= radio_button :member, :sex, '1' %>男</label>
+<label><%= radio_button :member, :sex, '2' %>女</label>
+</td></tr>
+<tr><th>誕生日</th><td><%= date_select :member, :birthday, :use_month_number => true, :start_year => 1912 %></td></tr>
+<tr><th></th><td><%= submit_tag '送信' %></td></tr>
+<% end %>
+</table>
+
+
+
+<%= link_to('アンケート一覧へ','/answers/index') %>

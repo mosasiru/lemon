@@ -1,6 +1,6 @@
 Lemon::Application.routes.draw do
 
-  root :to => 'welcome#index'
+  root :to => 'answers#index'
   get 'answers', :to => 'answers#index', :as => :user_root
   
 #  match ':controller(/:action(/:member_id(/:question_id)))(.:format)'
@@ -71,6 +71,5 @@ Lemon::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-
 
 end
