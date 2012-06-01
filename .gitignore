@@ -31,3 +31,4 @@ master
 *.pyo
 mosasiru
 /nbproject/private/
+/.metadata/

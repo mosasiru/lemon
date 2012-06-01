@@ -21,7 +21,8 @@ development:
   pool: 5
   timeout: 5000
 #  reconnect: false
-#  socket: /var/run/mysqld/mysqld.sock
+#  # JRuby doesn't support socket:
+   #socket: /var/run/mysqld/mysqld.sock
 
 
 # Warning: The database defined as "test" will be erased and
@@ -41,7 +42,8 @@ test:
   pool: 5
   timeout: 5000
   reconnect: false
-  socket: /var/run/mysqld/mysqld.sock
+  # JRuby doesn't support socket:
+  #socket: /var/run/mysqld/mysqld.sock
 
 production:
 #  adapter: sqlite3
@@ -57,4 +59,5 @@ production:
   pool: 5
   timeout: 5000
   reconnect: false
-  socket: /var/run/mysqld/mysqld.sock
+  # JRuby doesn't support socket:
+  #socket: /var/run/mysqld/mysqld.sock
