@@ -6,11 +6,7 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # gem 'sqlite3'
-<<<<<<< HEAD
-gem 'mysql2', '>= 0.3'
-=======
 gem 'mysql2'
->>>>>>> mosasiru
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -41,8 +37,6 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-<<<<<<< HEAD
-=======
 group :deployment, :test do
   gem 'rspec-rails'
   gem 'guard-rails'
@@ -60,17 +54,13 @@ end
 
 
 
->>>>>>> mosasiru
 gem 'therubyrhino'
 
 gem 'execjs'
 
-<<<<<<< HEAD
-=======
 gem 'devise'
 
 gem 'unicorn'
 
 gem 'twitter-bootstrap-rails'
 
->>>>>>> mosasiru
