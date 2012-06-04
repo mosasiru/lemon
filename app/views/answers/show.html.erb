@@ -15,3 +15,20 @@
 <p><%= link_to('詳細を見る','/answers/detail/'+@question.id.to_s) %></p>
 
 <%= link_to '戻る', '/answers/index' %>
+
+<script>
+  
+  opt1=<%= @option1.count %>
+  opt2=<%= @option2.count %>
+  opt3=<%= @option3.count %>
+  opt4=<%= @option4.count %>  
+  opt5=<%= @option5.count %>
+
+$(document).ready(function(){
+    // Make this a pie chart.
+    var pie = pieGraphfunction(opt1,opt2,opt3,opt4,opt5)
+  })
+</script>
+
+
+<div id="chartDiv" style="width:600px; height:400px;" /></div>

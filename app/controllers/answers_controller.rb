@@ -61,6 +61,8 @@ class AnswersController < ApplicationController
     @option3 = Answer.find_all_by_question_id_and_ans(params[:question_id],3)
     @option4 = Answer.find_all_by_question_id_and_ans(params[:question_id],4)
     @option5 = Answer.find_all_by_question_id_and_ans(params[:question_id],5)
+    @nameOfOption1 = Option.find_by_question_id_and_order(params[:question_id],1)
+    
   end
   
   def detail
