@@ -9,13 +9,13 @@
 <%= hidden_field :question, :member_id, { :value => @user } %>
 
 
-<tr><th>質問</th><td><%= text_field :question, :title, {:size => 25} %>（必須）</td></tr>
+<tr><th>質問</th><td><%= text_field :question, :title, {:size => 25, :id => "title"} %>（必須）</td></tr>
 <tr><th>説明</th><td><%= text_area :question, :text, {:cols => 40, :rows => 10} %></td></tr>
 <tr><th>カテゴリー</th><td><%= select :question, :category_id, options_for_select({'エンタメ・音楽'=>1,'生活・一般・スポーツ'=>2,'科学・技術'=>3,'政治'=>4,'アニメ・ゲーム・絵'=>5,'その他'=>6},1) %></td></tr>
 <%# select_tag :category_id, option_from_collection_for_select(@category,"id","name")  %>
 
-<tr><th>回答１</th><td><%= text_field :option1, :string %>（必須）</td></tr>
-<tr><th>回答２</th><td><%= text_field :option2, :string %>（必須）</td></tr>
+<tr><th>回答１</th><td><%= text_field :option1, :string, {:id => "option1"} %>（必須）</td></tr>
+<tr><th>回答２</th><td><%= text_field :option2, :string, {:id => "option2"} %>（必須）</td></tr>
 <tr><th>回答３</th><td><%= text_field :option3, :string %></td></tr>
 <tr><th>回答４</th><td><%= text_field :option4, :string %></td></tr>
 <tr><th>回答５</th><td><%= text_field :option5, :string %></td></tr>
