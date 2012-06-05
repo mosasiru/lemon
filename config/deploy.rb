@@ -14,7 +14,7 @@ set :rvm_type, :user
 set :application, "prolemon"
 set :repository,  "git://github.com/mosasiru/lemon.git"
 set :scm, :git
-set :branch, "mosasiru"
+set :branch, "master"
 set :deploy_via, :remote_cache
 set :deploy_to, "/home/mosa/public/production/#{application}"
 set :rails_env, "production"
