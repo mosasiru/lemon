@@ -1,0 +1,6 @@
+alias l='ls -alF'
+alias cp='cp -i'
+alias rm='rm -i'
+alias u='unicorn_rails'
+alias r='rails s'
+alias un='unicorn_rails -c config/unicorn.rb -E development -D'
