@@ -1,3 +1,5 @@
+<%= javascript_include_tag '/javascripts/index' %>
+
 
 <h1>アンケート</h1>
 <h2 class="well">アンケートページへようこそ！</h2>
@@ -13,7 +15,7 @@
 	<%= link_to 'ログイン', [:new, :user_session] %>　<%= link_to '新規ユーザー登録', [:new, :user_registration]%>
 	<% end %></p>
 
-<div class="well">	
+<div id="recommend" class="well" style="display:none;">	
 
 	<% if @reco != nil %>
 		<% if !Question.where(:id => @reco.question_id.to_s, :member_id => @user).exists? %>
