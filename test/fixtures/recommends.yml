@@ -5,5 +5,21 @@ one:
   question_id: 1
 
 two:
-  member_id: 1
+  member_id: 2
   question_id: 1
+
+three:
+  member_id: 3
+  question_id: 4
+  
+four:
+  member_id: 4
+  question_id: 3
+  
+five:
+  member_id: 5
+  question_id: 3
+  
+six:
+  member_id: 6
+  question_id: 5

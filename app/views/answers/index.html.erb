@@ -21,45 +21,41 @@
 
 <% @questions.each do |question| %>
 <tr><td><%= link_to  question.title , '/answers/show/'+question.id.to_s %></td>
+<% @option1 = @option1s.detect{|x| x.question_id == question.id} %>
+<% @option2 = @option2s.detect{|x| x.question_id == question.id} %>
+<% @option3 = @option3s.detect{|x| x.question_id == question.id} %>
+<% @option4 = @option4s.detect{|x| x.question_id == question.id} %>
+<% @option5 = @option5s.detect{|x| x.question_id == question.id} %>
 <td>
-<% k=0
-@answer1.each do |answer1| 
-  if question.id==answer1.question_id
-    k = k+1
-  end
-end %><%= k %></td>
+	<% if @option1 != nil %>
+	<%= @answer1.select{|x| x.question_id == question.id }.count %>
+	<% else %>
+	-
+	<% end %></td>
 <td>
-<% k=0
-@answer2.each do |answer2|
-  if question.id==answer2.question_id
-    k=k+1
-  end
-end %><%= k %>
-</td>
+	<% if @option2 != nil %>
+	<%= @answer2.select{|x| x.question_id == question.id }.count %>
+	<% else %>
+	-
+	<% end %></td>
 <td>
-<% k=0
-@answer3.each do |answer3|
-  if question.id==answer3.question_id
-    k=k+1
-  end
-end %><%= k %>
-</td>
+	<% if @option3 != nil %>
+	<%= @answer3.select{|x| x.question_id == question.id }.count %>
+	<% else %>
+	-
+	<% end %></td>
 <td>
-<% k=0
-@answer4.each do |answer4|
-  if question.id==answer4.question_id
-    k=k+1
-  end
-end %><%= k %>
-</td>
+	<% if @option4 != nil %>
+	<%= @answer4.select{|x| x.question_id == question.id }.count %>
+	<% else %>
+	-
+	<% end %></td>
 <td>
-<% k=0
-@answer5.each do |answer5|
-  if question.id==answer5.question_id
-    k=k+1
-  end
-end %><%= k %>
-</td>
+	<% if @option5 != nil %>
+	<%= @answer5.select{|x| x.question_id == question.id }.count %>
+	<% else %>
+	-
+	<% end %></td>
 <td>
 <% if Question.where(:id => question.id.to_s, :member_id => @user).exists? %>
 あなたの質問に投票することはできません。
@@ -69,12 +65,21 @@ end %><%= k %>
 <%= form_tag({ :action => 'acreate/'+question.id.to_s}) do %>
 <%= hidden_field :answer, :question_id, { :value => question.id }%>
 <%= hidden_field :answer, :member_id, { :value => @user } %>
-<label><%= radio_button :answer, :ans, '1' %>回答１</label>
-<label><%= radio_button :answer, :ans, '2' %>回答２</label>
-<label><%= radio_button :answer, :ans, '3' %>回答３</label>
-<label><%= radio_button :answer, :ans, '4' %>回答４</label>
-<label><%= radio_button :answer, :ans, '5' %>回答５</label>
-
+<% if @option1 != nil %>
+<label><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
+<% end %>
+<% if @option2 != nil %>
+<label><%= radio_button :answer, :ans, '2' %><%= @option2.string %></label>
+<% end %>
+<% if @option3 != nil %>
+<label><%= radio_button :answer, :ans, '3' %><%= @option3.string %></label>
+<% end %>
+<% if @option4 != nil %>
+<label><%= radio_button :answer, :ans, '4' %><%= @option4.string %></label>
+<% end %>
+<% if @option5 != nil %>
+<label><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
+<% end %>
 <label>コメント<%= text_field :answer, :comment %></label>
 <%# hidden_field :answer, :question_id, { :value => question.id } %>
 <%# hidden_field :answer, :member_id, { :value => @member.id  } %>

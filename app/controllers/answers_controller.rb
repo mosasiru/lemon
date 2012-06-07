@@ -15,6 +15,11 @@ class AnswersController < ApplicationController
 #      @member = Member.find(params[:member_id])
         @answer = Answer.new
         @category = Category.all
+        @option1s = Option.find_all_by_order(1)
+        @option2s = Option.find_all_by_order(2)
+        @option3s = Option.find_all_by_order(3)
+        @option4s = Option.find_all_by_order(4)
+        @option5s = Option.find_all_by_order(5)
       else
          redirect_to("/answers/newuser")
       end
