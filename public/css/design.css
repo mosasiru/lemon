@@ -1,3 +1,13 @@
 .right{
 	text-align:right;
 }
+
+.floatleft{
+	float:left;
+}
+
+.floatright{
+	float:right;
+}
+.clear { clear:both; }  
+.clear hr { display:none; }  

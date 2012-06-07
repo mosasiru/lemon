@@ -3,7 +3,6 @@
 <h2 class="well">アンケートページへようこそ！</h2>
 <p><% if user_signed_in? %><%= @member.username%><% else %>ゲスト<% end %>さんこんにちは！</p>
 
-<p>ここに@listから取ってきて一覧を表示するよ！</p>
 
 
 <p class="right"><%= link_to('アンケートの新規作成','/answers/new') %></p>
@@ -13,6 +12,46 @@
 	<% else %>
 	<%= link_to 'ログイン', [:new, :user_session] %>　<%= link_to '新規ユーザー登録', [:new, :user_registration]%>
 	<% end %></p>
+
+<div class="well">
+	
+	<% @recommend = @rand[0] %>
+	
+	<h3>今日の質問：<%= @recommend.title %></h3>
+	<div class="floatleft">
+	<p><%= @recommend.text %></p>
+	</div>
+
+	<div class="floatright">
+	<%= form_tag({ :action => 'acreate/'+@recommend.id.to_s}) do %>
+	<%= hidden_field :answer, :question_id, { :value => @recommend.id }%>
+	<%= hidden_field :answer, :member_id, { :value => @user } %>
+	<% @option1 = @option1s.detect{|x| x.question_id == @recommend.id} %>
+	<% @option2 = @option2s.detect{|x| x.question_id == @recommend.id} %>
+	<% @option3 = @option3s.detect{|x| x.question_id == @recommend.id} %>
+	<% @option4 = @option4s.detect{|x| x.question_id == @recommend.id} %>
+	<% @option5 = @option5s.detect{|x| x.question_id == @recommend.id} %>
+	<% if @option1 != nil %>
+	<label><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
+	<% end %>
+	<% if @option2 != nil %>
+	<label><%= radio_button :answer, :ans, '2' %><%= @option2.string %></label>
+	<% end %>
+	<% if @option3 != nil %>
+	<label><%= radio_button :answer, :ans, '3' %><%= @option3.string %></label>
+	<% end %>
+	<% if @option4 != nil %>
+	<label><%= radio_button :answer, :ans, '4' %><%= @option4.string %></label>
+	<% end %>
+	<% if @option5 != nil %>
+	<label><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
+	<% end %>
+	<label>コメント<%= text_field :answer, :comment %></label>
+	<%= submit_tag '送信' %>
+	<% end %> <%#form_tag %>
+	</div>
+	<div class="clear"><hr /></div>  
+</div>
 
 
 <table class="table table-striped">

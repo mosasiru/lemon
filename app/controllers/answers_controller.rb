@@ -20,6 +20,7 @@ class AnswersController < ApplicationController
         @option3s = Option.find_all_by_order(3)
         @option4s = Option.find_all_by_order(4)
         @option5s = Option.find_all_by_order(5)
+        @rand = Question.find(:all, :order => 'RAND()', :limit => 1)
       else
          redirect_to("/answers/newuser")
       end
@@ -32,6 +33,12 @@ class AnswersController < ApplicationController
       @answer5 = Answer.find_all_by_ans(5)
       @answer = Answer.new
       @category = Category.all
+        @option1s = Option.find_all_by_order(1)
+        @option2s = Option.find_all_by_order(2)
+        @option3s = Option.find_all_by_order(3)
+        @option4s = Option.find_all_by_order(4)
+        @option5s = Option.find_all_by_order(5)
+        @rand = Question.find(:all, :order => 'RAND()', :limit => 1)
         
     end
   end
