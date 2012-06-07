@@ -13,10 +13,22 @@
 	<%= link_to 'ログイン', [:new, :user_session] %>　<%= link_to '新規ユーザー登録', [:new, :user_registration]%>
 	<% end %></p>
 
-<div class="well">
-	
-	<% @recommend = @rand[0] %>
-	
+<div class="well">	
+
+	<% if @reco != nil %>
+		<% if !Question.where(:id => @reco.question_id.to_s, :member_id => @user).exists? %>
+			<% if !Answer.where(:question_id => @reco.question_id.to_s, :member_id => @user).exists? %>
+				<% @recommend = @questions.detect{|x| x.id == @reco.question_id} %>
+			<% else %>
+				<% @recommend = @rand[0] %>				
+			<% end %>
+		<% else %>
+			<% @recommend = @rand[0] %>
+		<% end %>
+	<% else %>
+		<% @recommend = @rand[0] %>
+	<% end %>
+
 	<h3>今日の質問：<%= @recommend.title %></h3>
 	<div class="floatleft">
 	<p><%= @recommend.text %></p>

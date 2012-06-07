@@ -21,6 +21,7 @@ class AnswersController < ApplicationController
         @option4s = Option.find_all_by_order(4)
         @option5s = Option.find_all_by_order(5)
         @rand = Question.find(:all, :order => 'RAND()', :limit => 1)
+        @reco = Recommend.find_by_member_id(@user)
       else
          redirect_to("/answers/newuser")
       end
@@ -74,6 +75,10 @@ class AnswersController < ApplicationController
     @option4 = Answer.find_all_by_question_id_and_ans(params[:question_id],4)
     @option5 = Answer.find_all_by_question_id_and_ans(params[:question_id],5)
     @nameOfOption1 = Option.find_by_question_id_and_order(params[:question_id],1)
+    @nameOfOption2 = Option.find_by_question_id_and_order(params[:question_id],2)
+    @nameOfOption3 = Option.find_by_question_id_and_order(params[:question_id],3)
+    @nameOfOption4 = Option.find_by_question_id_and_order(params[:question_id],4)
+    @nameOfOption5 = Option.find_by_question_id_and_order(params[:question_id],5)
     
   end
   

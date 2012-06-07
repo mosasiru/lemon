@@ -1,20 +1,20 @@
 <h1>各アンケートのページ</h1>
 <h2>各アンケートの集計結果載せるよー</h2>
-<p>質問：<%= @question.title %></p>
-<p>説明：<%= @question.text %></p>
-<p>質問者：<%= @questioner.username  %></p>
-<p>カテゴリー：<%= @category.name %></p>
-<p>円グラフ<br>
-てかとりあえず、<br>
-「回答１」を選んだ人数：<%= @option1.count %><br>
-「回答２」を選んだ人数：<%= @option2.count %></p>
-「回答３」を選んだ人数：<%= @option3.count %></p>
-「回答４」を選んだ人数：<%= @option4.count %></p>
-「回答５」を選んだ人数：<%= @option5.count %></p>
 
-<p><%= link_to('詳細を見る','/answers/detail/'+@question.id.to_s) %></p>
+<div>
+	<div class="floatleft">
+		<h3>質問：<%= @question.title %></h3>
+		<p>説明：<%= @question.text %></p>
+		<p>質問者：<%= @questioner.username  %></p>
+		<p>カテゴリー：<%= @category.name %></p>
+	</div>
+	<div class="floatright">
+		<p style="font-size:24px;margin-top:50px;margin-right:150px;background-color:#ffccff"><%= link_to '次の質問に答える', '/answers/index' %></p>
+	</div>
+	<div class="clear"><hr /></div>  
+</div>
 
-<%= link_to '戻る', '/answers/index' %>
+		<p>円グラフ</p>
 
 <script>
   
@@ -30,5 +30,27 @@ $(document).ready(function(){
   })
 </script>
 
-
 <div id="chartDiv" style="width:600px; height:400px;" /></div>
+
+	<p>
+		<% if @nameOfOption1 != nil %>
+		「<%= @nameOfOption1.string %>」を選んだ人数：<%= @option1.count %> 
+		<% end %>
+		<% if @nameOfOption2 != nil %>
+		「<%= @nameOfOption2.string %>」を選んだ人数：<%= @option2.count %> 
+		<% end %>
+		<% if @nameOfOption3 != nil %>
+		「<%= @nameOfOption3.string %>」を選んだ人数：<%= @option3.count %> <br>
+		<% end %>
+		<% if @nameOfOption4 != nil %>
+		「<%= @nameOfOption4.string %>」を選んだ人数：<%= @option4.count %> 
+		<% end %>
+		<% if @nameOfOption5 != nil %>
+		「<%= @nameOfOption5.string %>」を選んだ人数：<%= @option5.count %> 
+		<% end %>
+	</p>
+
+<p><%= link_to('詳細を見る','/answers/detail/'+@question.id.to_s) %></p>
+<p><%= link_to '戻る', '/answers/index' %></p>
+
+;
