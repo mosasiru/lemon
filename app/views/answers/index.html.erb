@@ -3,7 +3,7 @@
 
 <h1>アンケート</h1>
 <h2 class="well">アンケートページへようこそ！</h2>
-<p><% if user_signed_in? %><%= @member.username%><% else %>ゲスト<% end %>さんこんにちは！</p>
+<p><span style="background-color:#ffff99"><% if user_signed_in? %><%= @member.username%><% else %>ゲスト<% end %></span>さんこんにちは！</p>
 
 
 
@@ -16,7 +16,6 @@
 	<% end %></p>
 
 <div id="recommend" class="well" style="display:none;">	
-
 	<% if @reco != nil %>
 		<% if !Question.where(:id => @reco.question_id.to_s, :member_id => @user).exists? %>
 			<% if !Answer.where(:question_id => @reco.question_id.to_s, :member_id => @user).exists? %>
@@ -31,40 +30,44 @@
 		<% @recommend = @rand[0] %>
 	<% end %>
 
-	<h3>今日の質問：<%= @recommend.title %></h3>
-	<div class="floatleft">
-	<p><%= @recommend.text %></p>
-	</div>
+	<% if @recommend == nil %>
+		<p>質問がまだありません。</p>
+	<% else %>
+		<h3>今日の質問：<% @recommend.title %></h3>
+		<div class="floatleft">
+		<p>< @recommend.text %></p>
+		</div>		
 
-	<div class="floatright">
-	<%= form_tag({ :action => 'acreate/'+@recommend.id.to_s}) do %>
-	<%= hidden_field :answer, :question_id, { :value => @recommend.id }%>
-	<%= hidden_field :answer, :member_id, { :value => @user } %>
-	<% @option1 = @option1s.detect{|x| x.question_id == @recommend.id} %>
-	<% @option2 = @option2s.detect{|x| x.question_id == @recommend.id} %>
-	<% @option3 = @option3s.detect{|x| x.question_id == @recommend.id} %>
-	<% @option4 = @option4s.detect{|x| x.question_id == @recommend.id} %>
-	<% @option5 = @option5s.detect{|x| x.question_id == @recommend.id} %>
-	<% if @option1 != nil %>
-	<label><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
+		<div class="floatright">
+		<%= form_tag({ :action => 'acreate/'+@recommend.id.to_s}) do %>
+		<%= hidden_field :answer, :question_id, { :value => @recommend.id }%>
+		<%= hidden_field :answer, :member_id, { :value => @user } %>
+		<% @option1 = @option1s.detect{|x| x.question_id == @recommend.id} %>
+		<% @option2 = @option2s.detect{|x| x.question_id == @recommend.id} %>
+		<% @option3 = @option3s.detect{|x| x.question_id == @recommend.id} %>
+		<% @option4 = @option4s.detect{|x| x.question_id == @recommend.id} %>
+		<% @option5 = @option5s.detect{|x| x.question_id == @recommend.id} %>
+		<% if @option1 != nil %>
+		<label><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
+		<% end %>
+		<% if @option2 != nil %>
+		<label><%= radio_button :answer, :ans, '2' %><%= @option2.string %></label>
+		<% end %>
+		<% if @option3 != nil %>
+		<label><%= radio_button :answer, :ans, '3' %><%= @option3.string %></label>
+		<% end %>
+		<% if @option4 != nil %>
+		<label><%= radio_button :answer, :ans, '4' %><%= @option4.string %></label>
+		<% end %>
+		<% if @option5 != nil %>
+		<label><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
+		<% end %>
+		<label>コメント<%= text_field :answer, :comment %></label>
+		<%= submit_tag '送信' %>
+		<% end %> <%#form_tag %>
+		</div>
+		<div class="clear"><hr /></div>  
 	<% end %>
-	<% if @option2 != nil %>
-	<label><%= radio_button :answer, :ans, '2' %><%= @option2.string %></label>
-	<% end %>
-	<% if @option3 != nil %>
-	<label><%= radio_button :answer, :ans, '3' %><%= @option3.string %></label>
-	<% end %>
-	<% if @option4 != nil %>
-	<label><%= radio_button :answer, :ans, '4' %><%= @option4.string %></label>
-	<% end %>
-	<% if @option5 != nil %>
-	<label><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
-	<% end %>
-	<label>コメント<%= text_field :answer, :comment %></label>
-	<%= submit_tag '送信' %>
-	<% end %> <%#form_tag %>
-	</div>
-	<div class="clear"><hr /></div>  
 </div>
 
 
