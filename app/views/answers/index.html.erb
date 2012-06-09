@@ -33,9 +33,9 @@
 	<% if @recommend == nil %>
 		<p>質問がまだありません。</p>
 	<% else %>
-		<h3>今日の質問：<% @recommend.title %></h3>
+		<h3>今日の質問：<%= @recommend.title %></h3>
 		<div class="floatleft">
-		<p>< @recommend.text %></p>
+		<p><%= @recommend.text %></p>
 		</div>		
 
 		<div class="floatright">
