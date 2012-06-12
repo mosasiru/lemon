@@ -8,11 +8,13 @@
 
 
 <p class="right"><%= link_to('アンケートの新規作成','/answers/new') %></p>
-
 <p class="right"><% if user_signed_in? %>
-	<%= link_to 'ログアウト', [:destroy, :user_session], {:method => "delete"} %>
+
+	<%#= link_to 'ログアウト(old)', [:destroy, :user_session], {:method => "delete"} %>
+  	<%= link_to 'ログアウト', destroy_user_session_path %>
+
 	<% else %>
-	<%= link_to 'ログイン', [:new, :user_session] %>　<%= link_to '新規ユーザー登録', [:new, :user_registration]%>
+	<%#= link_to 'ログイン(old)', [:new, :user_session] %> <%#= link_to '新規ユーザー登録(old)', [:new, :user_registration]%>
 	<% end %></p>
 
 <div id="recommend" class="well" style="display:none;">	

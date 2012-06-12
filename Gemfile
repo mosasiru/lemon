@@ -64,3 +64,6 @@ gem 'unicorn'
 
 gem 'twitter-bootstrap-rails'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'

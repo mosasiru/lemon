@@ -64,4 +64,13 @@ Lemon::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  
+  config.action_mailer.default_url_options = { :host => 'http://49.212.135.185:400/' }
+  
+  #devise(development)
+  #facebook,twitter:http://49.212.135.185:400/
+  Devise.setup do |config| 
+    config.omniauth :facebook, '253307904770514', '8033a50b9df6a16a0b03206972ea8f96', :scope => 'email,user_birthday', :display => 'popup'
+    config.omniauth :twitter, 'rUI3Bf7S4QFGjscJqYQRxg', 'ampHSUdneO9p2K6HbidD9h74ZDYwxWsEnF4uKZaPL0', :scope => 'email,user_birthday', :display => 'popup'
+  end
 end

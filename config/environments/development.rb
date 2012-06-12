@@ -35,5 +35,12 @@ Lemon::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'localhost:8080' }
+  
+  #devise(development)
+  #facebook:localhost:8080 twitter:192.168.11.6:8080
+  Devise.setup do |config|
+    config.omniauth :facebook, '475822215764818', 'f66a58d0cfe5c7c5d1f1670291364e20', :scope => 'email,user_birthday', :display => 'popup'
+    config.omniauth :twitter, 'qrGFICRr05h13zqNAqX4w', 'Q2RIwxt0zblH3hMzJ1xU2FzpEKeqwEHOUvfYq5zBkg', :scope => 'email,user_birthday', :display => 'popup'
+  end
 end
