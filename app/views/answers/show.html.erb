@@ -24,10 +24,52 @@
   opt4=<%= @option4.count %>  
   opt5=<%= @option5.count %>
 
-$(document).ready(function(){
+  opt1s="<%= @nameOfOption1.string %>"
+  opt2s="<%= @nameOfOption2.string %>"
+  
+  <% if @nameOfOption5 != nil %>
+  
+  opt3s="<%= @nameOfOption3.string %>"
+  opt4s="<%= @nameOfOption4.string %>"
+  opt5s="<%= @nameOfOption5.string %>"
+
+
+  $(document).ready(function(){
     // Make this a pie chart.
-    var pie = pieGraphfunction(opt1,opt2,opt3,opt4,opt5)
+    var pie = pieGraphfunction5(opt1,opt2,opt3,opt4,opt5,opt1s,opt2s,opt3s,opt4s,opt5s)
   })
+  
+  <% elsif @nameOfOption4 != nil %>
+  opt3s="<%= @nameOfOption3.string %>"
+  opt4s="<%= @nameOfOption4.string %>"
+  opt5s=""
+
+  $(document).ready(function(){
+    // Make this a pie chart.
+    var pie = pieGraphfunction4(opt1,opt2,opt3,opt4,opt1s,opt2s,opt3s,opt4s)
+  })
+  
+  <% elsif @nameOfOption3 != nil %>
+  opt3s="<%= @nameOfOption3.string %>"
+  opt4s=""
+  opt5s=""
+
+  $(document).ready(function(){
+    // Make this a pie chart.
+    var pie = pieGraphfunction3(opt1,opt2,opt3,opt1s,opt2s,opt3s)
+  })
+  
+  <% else %>  
+  opt3s=""
+  opt4s=""
+  opt5s=""
+  
+  $(document).ready(function(){
+    // Make this a pie chart.
+    var pie = pieGraphfunction2(opt1,opt2,opt1s,opt2s)
+  })
+  
+  <% end %>
 </script>
 
 <div id="chartDiv" style="width:600px; height:400px;" /></div>
