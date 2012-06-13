@@ -18,24 +18,22 @@
 	<% end %></p>
 
 <div id="recommend" class="well" style="display:none;">	
-	<% if @reco != nil %>
-		<% if !Question.where(:id => @reco.question_id.to_s, :member_id => @user).exists? %>
-			<% if !Answer.where(:question_id => @reco.question_id.to_s, :member_id => @user).exists? %>
-				<% @recommend = @questions.detect{|x| x.id == @reco.question_id} %>
-			<% else %>
-				<% @recommend = @rand[0] %>				
-			<% end %>
-		<% else %>
-			<% @recommend = @rand[0] %>
-		<% end %>
-	<% else %>
-		<% @recommend = @rand[0] %>
-	<% end %>
-
+	
+<%
+if user_signed_in?
+    if @reco != nil
+    	@recommend = @reco
+    else
+    	@recommend = @rand
+    end
+else
+	@recommend = @questions[rand(@questions.length)]
+end
+%>
 	<% if @recommend == nil %>
-		<p>質問がまだありません。</p>
+		<p>質問がありません。</p>
 	<% else %>
-		<h3>今日の質問：<%= @recommend.title %></h3>
+		<h3>あなたにおすすめの質問：<%= @recommend.title %></h3>
 		<div class="floatleft">
 		<p><%= @recommend.text %></p>
 		</div>		

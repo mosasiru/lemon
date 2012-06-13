@@ -1,25 +1,41 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  member_id: 1
+  member_id: 11
   question_id: 1
 
 two:
-  member_id: 2
+  member_id: 11
   question_id: 1
 
 three:
-  member_id: 3
-  question_id: 4
+  member_id: 11
+  question_id: 1
   
 four:
-  member_id: 4
-  question_id: 3
+  member_id: 11
+  question_id: 1
   
 five:
-  member_id: 5
-  question_id: 3
+  member_id: 11
+  question_id: 1
   
 six:
-  member_id: 6
-  question_id: 5
+  member_id: 11
+  question_id: 1
+  
+seven:
+  member_id: 11
+  question_id: 2
+  
+eight:
+  member_id: 11
+  question_id: 2
+  
+nine:
+  member_id: 11
+  question_id: 2
+  
+ten:
+  member_id: 11
+  question_id: 2
