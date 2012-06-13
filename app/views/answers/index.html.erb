@@ -35,7 +35,7 @@ end
 	<% else %>
 		<h3>あなたにおすすめの質問：<%= @recommend.title %></h3>
 		<div class="floatleft">
-		<p><%= @recommend.text %></p>
+		<p><%= simple_format(@recommend.text) %></p>
 		</div>		
 
 		<div class="floatright">

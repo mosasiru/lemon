@@ -4,7 +4,7 @@
 <div>
 	<div class="floatleft">
 		<h3>質問：<%= @question.title %></h3>
-		<p>説明：<%= @question.text %></p>
+		<p><%= simple_format(@question.text) %></p>
 		<p>質問者：<%= @questioner.username  %></p>
 		<p>カテゴリー：<%= @category.name %></p>
 	</div>
