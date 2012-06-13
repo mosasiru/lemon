@@ -6,6 +6,7 @@ class AnswersController < ApplicationController
       @user = current_user.id
       if Member.where(:user_id => @user).exists?
         @questions = Question.all
+        @questions = @questions.reverse
         @answer1 = Answer.find_all_by_ans(1)
         @answer2 = Answer.find_all_by_ans(2)
         @answer3 = Answer.find_all_by_ans(3)
@@ -38,6 +39,7 @@ class AnswersController < ApplicationController
       end
     else
       @questions = Question.all
+      @questions = @questions.reverse
       @answer1 = Answer.find_all_by_ans(1)
       @answer2 = Answer.find_all_by_ans(2)
       @answer3 = Answer.find_all_by_ans(3)
