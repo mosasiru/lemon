@@ -6,7 +6,7 @@
 
 <table>
 <%= form_tag({ :action => 'qcreate'}) do %>
-<%= hidden_field :question, :member_id, { :value => @user } %>
+<%= hidden_field :question, :member_id, { :value =>Member.find_by_user_id(@user).id } %>
 
 
 <tr><th>質問</th><td><%= text_field :question, :title, {:size => 25, :id => "title"} %>（必須）</td></tr>

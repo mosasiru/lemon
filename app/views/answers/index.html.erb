@@ -41,7 +41,9 @@ end
 		<div class="floatright">
 		<%= form_tag({ :action => 'acreate/'+@recommend.id.to_s}) do %>
 		<%= hidden_field :answer, :question_id, { :value => @recommend.id }%>
-		<%= hidden_field :answer, :member_id, { :value => @user } %>
+		<%if user_signed_in?%>
+                  <%= hidden_field :answer, :member_id, { :value =>Member.find_by_user_id(@user).id } %>
+                <%end%>
 		<% @option1 = @option1s.detect{|x| x.question_id == @recommend.id} %>
 		<% @option2 = @option2s.detect{|x| x.question_id == @recommend.id} %>
 		<% @option3 = @option3s.detect{|x| x.question_id == @recommend.id} %>
@@ -63,7 +65,7 @@ end
 		<label><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
 		<% end %>
 		<label>コメント<%= text_field :answer, :comment %></label>
-		<%= submit_tag '送信' %>
+                <%= submit_tag '送信' %>
 		<% end %> <%#form_tag %>
 		</div>
 		<div class="clear"><hr /></div>  

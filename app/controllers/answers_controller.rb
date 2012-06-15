@@ -13,7 +13,6 @@ class AnswersController < ApplicationController
         @answer4 = Answer.find_all_by_ans(4)
         @answer5 = Answer.find_all_by_ans(5)
         @member = Member.find_by_user_id(@user)
-#      @member = Member.find(params[:member_id])
         @answer = Answer.new
         @category = Category.all
         @option1s = Option.find_all_by_order(1)
@@ -27,15 +26,15 @@ class AnswersController < ApplicationController
           @answeredString = @answeredString +","+ answered.question_id.to_s
         end
         @answeredString = @answeredString.slice(1,@answeredString.length)
-        @rands = Question.find_by_sql("SELECT * FROM questions WHERE member_id = " + @user.to_s + " and id NOT IN ("+@answeredString+")")
-        @rand = @rands[rand(@rands.length)]
-        @reco = Recommend.find_by_sql("SELECT * FROM recommends WHERE member_id = " + @user.to_s + " and question_id NOT IN ("+@answeredString+")")
-        @reco = @reco[rand(@reco.length)]
+#        @rands = Question.find_by_sql("SELECT * FROM questions WHERE member_id = " + @user.to_s + " and id NOT IN ("+@answeredString+")")
+#        @rand = @rands[rand(@rands.length)]
+#        @reco = Recommend.find_by_sql("SELECT * FROM recommends WHERE member_id = " + @user.to_s + " and question_id NOT IN ("+@answeredString+")")
+#        @reco = @reco[rand(@reco.length)]
         if @reco != nil
           @reco = Question.find(@reco.question_id)
         end
       else
-         redirect_to("/answers/newuser")
+
       end
     else
       @questions = Question.all
