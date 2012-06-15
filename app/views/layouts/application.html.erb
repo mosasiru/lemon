@@ -81,9 +81,14 @@
                 <li><%= link_to "twitterでログイン", user_omniauth_authorize_path(:twitter)  %></li>
               <% end %>
             </ul>
+<% if false %>
             <form class="navbar-search pull-right">
                <input type="text" class="search-query" placeholder="Search">
             </form>
+<% end %>
+              <%= form_tag({ :controller => "answers", :action => "search"}, { :method => :get, :class => "navbar-search pull-right"}) do %>
+              <%= text_field_tag :keywd, '', {:size => 25, :class => "search-query", :placeholder => "Search"}%>
+              <% end %>
           </div><!--/.nav-collapse -->
         </div>
       </div>

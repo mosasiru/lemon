@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_filter :authenticate_user!, :except=>[:show, :index]
+  before_filter :authenticate_user!, :except=>[:show, :index, :search, :searchview]
 
   def index
     if user_signed_in?
@@ -54,10 +54,34 @@ class AnswersController < ApplicationController
         
     end
   end
+
+  def searchview
+    @message = params['message']
+    if params['result'] != nil
+      @questions = Question.find(params['result'])
+      @questions = @questions.reverse
+    else
+      @questions = nil
+    end
+      @answer1 = Answer.find_all_by_ans(1)
+      @answer2 = Answer.find_all_by_ans(2)
+      @answer3 = Answer.find_all_by_ans(3)
+      @answer4 = Answer.find_all_by_ans(4)
+      @answer5 = Answer.find_all_by_ans(5)
+      @answer = Answer.new
+      @category = Category.all
+        @option1s = Option.find_all_by_order(1)
+        @option2s = Option.find_all_by_order(2)
+        @option3s = Option.find_all_by_order(3)
+        @option4s = Option.find_all_by_order(4)
+        @option5s = Option.find_all_by_order(5)
+  end
   
   def newuser
   @user = current_user.id
-  
+    if user_signed_in?
+      @user = current_user.id
+    end
   end
 
   def new
@@ -190,5 +214,9 @@ class AnswersController < ApplicationController
     end
   end
 
-
+  def search
+    @message = params[:keywd]
+    @result = Question.find(:all, :conditions => ["title like ?", "%"+params[:keywd]+"%"])
+    redirect_to :action =>"searchview", :result => @result , :message => @message
+  end
 end

@@ -1,13 +1,8 @@
-<%= javascript_include_tag '/javascripts/index' %>
-
-
 <h1>アンケート</h1>
 <h2 class="well">アンケートページへようこそ！</h2>
 
-<%#ここからsearchviewと同じ%>
 
 <p><span style="background-color:#ffff99"><% if user_signed_in? %><%= @member.username%><% else %>ゲスト<% end %></span>さんこんにちは！</p>
-
 
 
 <p class="right"><%= link_to('アンケートの新規作成','/answers/new') %></p>
@@ -20,64 +15,12 @@
 	<%#= link_to 'ログイン(old)', [:new, :user_session] %> <%#= link_to '新規ユーザー登録(old)', [:new, :user_registration]%>
 	<% end %></p>
 
-<%#ここまでsearchview%>
+              <%= form_tag({ :controller => "answers", :action => "search"}, { :method => :get}) do %>
+              <%= text_field_tag :keywd, '', {:size => 25, :placeholder => @message}%>で検索
+              <% end %>
 
-<div id="recommend" class="well" style="display:none;">	
-	
-<%
-if user_signed_in?
-    if @reco != nil
-    	@recommend = @reco
-    else
-    	@recommend = @rand
-    end
-else
-	@recommend = @questions[rand(@questions.length)]
-end
-%>
-	<% if @recommend == nil %>
-		<p>質問がありません。</p>
-	<% else %>
-		<h3>あなたにおすすめの質問：<%= @recommend.title %></h3>
-		<div class="floatleft">
-		<p><%= simple_format(@recommend.text) %></p>
-		</div>		
 
-		<div class="floatright">
-		<%= form_tag({ :action => 'acreate/'+@recommend.id.to_s}) do %>
-		<%= hidden_field :answer, :question_id, { :value => @recommend.id }%>
-		<%if user_signed_in?%>
-                  <%= hidden_field :answer, :member_id, { :value =>Member.find_by_user_id(@user).id } %>
-                <%end%>
-		<% @option1 = @option1s.detect{|x| x.question_id == @recommend.id} %>
-		<% @option2 = @option2s.detect{|x| x.question_id == @recommend.id} %>
-		<% @option3 = @option3s.detect{|x| x.question_id == @recommend.id} %>
-		<% @option4 = @option4s.detect{|x| x.question_id == @recommend.id} %>
-		<% @option5 = @option5s.detect{|x| x.question_id == @recommend.id} %>
-		<% if @option1 != nil %>
-		<label><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
-		<% end %>
-		<% if @option2 != nil %>
-		<label><%= radio_button :answer, :ans, '2' %><%= @option2.string %></label>
-		<% end %>
-		<% if @option3 != nil %>
-		<label><%= radio_button :answer, :ans, '3' %><%= @option3.string %></label>
-		<% end %>
-		<% if @option4 != nil %>
-		<label><%= radio_button :answer, :ans, '4' %><%= @option4.string %></label>
-		<% end %>
-		<% if @option5 != nil %>
-		<label><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
-		<% end %>
-		<label>コメント<%= text_field :answer, :comment %></label>
-                <%= submit_tag '送信' %>
-		<% end %> <%#form_tag %>
-		</div>
-		<div class="clear"><hr /></div>  
-	<% end %>
-</div>
-
-<%#ここからsearchviewと同じ%>
+<% if @questions != nil %>
 
 <table class="table table-striped">
 
@@ -155,3 +98,8 @@ end
 <% end %>
 
 </table>
+
+<% else %>
+
+<p>一致する情報は見つかりませんでした。</p>
+<% end %>
