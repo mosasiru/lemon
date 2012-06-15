@@ -29,10 +29,17 @@ class User < ActiveRecord::Base
                           email:auth.info.email,
                           password:Devise.friendly_token[0,20]
                           )
-      Member.create(user_id: user.id,
+      member = Member.create(user_id: user.id,
                     username: user.name
 #                    birthday: user.birthday
                     )
+      n = 10 
+      for i in 1..n
+        Recommend.create(
+                      member_id: member.id,
+                      recommend_no:i
+                      )
+      end
     end
     user
   end
@@ -47,10 +54,17 @@ class User < ActiveRecord::Base
 #                          email:auth.extra.user_hash.email,
                           password:Devise.friendly_token[0,20]
                           )
-      Member.create(user_id: user.id,
+      member = Member.create(user_id: user.id,
                     username: user.name
 #                    birthday: user.birthday
                     )
+      n = 10 
+      for i in 1..n
+        Recommend.create(
+                      member_id: member.id,
+                      recommend_no:i
+                      )
+      end
     end
     user
   end

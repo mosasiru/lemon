@@ -64,14 +64,14 @@
 	-
 	<% end %></td>
 <td>
-<% if Question.where(:id => question.id.to_s, :member_id => @user).exists? %>
+<% if user_signed_in? and Question.where(:id => question.id.to_s, :member_id => @member.id).exists?  %>
 あなたの質問に投票することはできません。
-<% elsif Answer.where(:question_id => question.id.to_s, :member_id => @user).exists? %>
+<% elsif user_signed_in? and Answer.where(:question_id => question.id.to_s, :member_id => @member.id).exists? %>
 既に投票済みです。
 <% else %>
 <%= form_tag({ :action => 'acreate/'+question.id.to_s}) do %>
 <%= hidden_field :answer, :question_id, { :value => question.id }%>
-<%= hidden_field :answer, :member_id, { :value => @user } %>
+<%= hidden_field :answer, :member_id, { :value => @member.id } if user_signed_in?%>
 <% if @option1 != nil %>
 <label><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
 <% end %>

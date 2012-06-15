@@ -56,6 +56,12 @@ class AnswersController < ApplicationController
   end
 
   def searchview
+    if user_signed_in?
+      @user = current_user.id
+      @member = Member.find_by_user_id(@user)
+    else
+      @user = nil
+    end
     @message = params['message']
     if params['result'] != nil
       @questions = Question.find(params['result'])
