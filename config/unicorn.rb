@@ -3,7 +3,7 @@ application = 'prolemon'
 listen "/tmp/unicorn_#{application}.sock"
 pid "/tmp/unicorn_#{application}.pid"
 
-worker_processes 6
+worker_processes 2
 preload_app true
 
 # capistrano 用に RAILS_ROOT を指定
@@ -18,8 +18,8 @@ end
 #end
 
 # ログ
-stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
+stderr_path File.expand_path('log/unicorn.stderr.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('log/unicorn.stdoutlog', ENV['RAILS_ROOT'])
 
 # ダウンタイムなくす
 preload_app true

@@ -20,16 +20,20 @@ class AnswersController < ApplicationController
         @option3s = Option.find_all_by_order(3)
         @option4s = Option.find_all_by_order(4)
         @option5s = Option.find_all_by_order(5)
-        @answered = Answer.find_all_by_member_id(@user)
+        @answered = Answer.find_all_by_member_id(@member.id)
         @answeredString = ""
+        
         @answered.each do |answered|
           @answeredString = @answeredString +","+ answered.question_id.to_s
         end
         @answeredString = @answeredString.slice(1,@answeredString.length)
-#        @rands = Question.find_by_sql("SELECT * FROM questions WHERE member_id = " + @user.to_s + " and id NOT IN ("+@answeredString+")")
-#        @rand = @rands[rand(@rands.length)]
-#        @reco = Recommend.find_by_sql("SELECT * FROM recommends WHERE member_id = " + @user.to_s + " and question_id NOT IN ("+@answeredString+")")
-#        @reco = @reco[rand(@reco.length)]
+        
+        if @answeredString != nil
+          @rands = Question.find_by_sql("SELECT * FROM questions WHERE member_id != " + (@member.id).to_s + " and id NOT IN ("+@answeredString+")")
+          @rand = @rands[rand(@rands.length)]
+          @reco = Recommend.find_by_sql("SELECT * FROM recommends WHERE member_id = " + (@member.id).to_s + " and question_id NOT IN ("+@answeredString+")")
+          @reco = @reco[rand(@reco.length)]
+        end
         if @reco != nil
           @reco = Question.find(@reco.question_id)
         end
