@@ -41,6 +41,7 @@ class AnswersController < ApplicationController
         if @reco != nil
           @reco = Question.find(@reco.question_id)
         end
+#人気の質問
         @popular = Hash::new
         @qnum = Question.all.length
         for i in 1..@qnum
@@ -147,6 +148,43 @@ class AnswersController < ApplicationController
         @option3s = Option.find_all_by_order(3)
         @option4s = Option.find_all_by_order(4)
         @option5s = Option.find_all_by_order(5)
+#人気の質問
+        @popular = Hash::new
+        @qnum = Question.all.length
+        for i in 1..@qnum
+          @num = Answer.find_all_by_question_id(i).count
+          @popular[i] = @num
+        end
+        @popular = @popular.sort_by{|key,val| -val}
+        if @popular != nil
+          i=0
+          while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+            i=i+1
+          end
+          if i<=@popular.length
+            @id = @popular[i][0]
+            @popQ1 = Question.find(@id)
+            @popOp1 = Option.find_all_by_question_id(@id)
+            i=i+1
+            while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+              i=i+1
+            end
+            if i<=@popular.length
+              @id = @popular[i][0]
+              @popQ2 = Question.find(@id)
+              @popOp2 = Option.find_all_by_question_id(@id)
+              i=i+1
+              while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+                i=i+1
+              end
+              if i<=@popular.length
+                @id = @popular[i][0]
+                @popQ3 = Question.find(@id)
+                @popOp3 = Option.find_all_by_question_id(@id)
+              end
+            end
+          end
+        end
   end
   
   def newuser
@@ -158,17 +196,117 @@ class AnswersController < ApplicationController
 
   def new
   @user = current_user.id
+      @member = Member.find_by_user_id(@user)
     @questions = Question.new
     @option1 = Option.new
     @option2 = Option.new
     @option3 = Option.new
     @option4 = Option.new
     @option5 = Option.new
+#人気の質問
+        @popular = Hash::new
+        @qnum = Question.all.length
+        for i in 1..@qnum
+          @num = Answer.find_all_by_question_id(i).count
+          @popular[i] = @num
+        end
+        @popular = @popular.sort_by{|key,val| -val}
+        if @popular != nil
+          i=0
+          while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+            i=i+1
+          end
+          if i<=@popular.length
+            @id = @popular[i][0]
+            @popQ1 = Question.find(@id)
+            @popOp1 = Option.find_all_by_question_id(@id)
+            i=i+1
+            while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+              i=i+1
+            end
+            if i<=@popular.length
+              @id = @popular[i][0]
+              @popQ2 = Question.find(@id)
+              @popOp2 = Option.find_all_by_question_id(@id)
+              i=i+1
+              while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+                i=i+1
+              end
+              if i<=@popular.length
+                @id = @popular[i][0]
+                @popQ3 = Question.find(@id)
+                @popOp3 = Option.find_all_by_question_id(@id)
+              end
+            end
+          end
+        end
   end
 
   def show
     if user_signed_in?
       @user = current_user.id
+      @member = Member.find_by_user_id(@user)
+#人気の質問
+        @popular = Hash::new
+        @qnum = Question.all.length
+        for i in 1..@qnum
+          @num = Answer.find_all_by_question_id(i).count
+          @popular[i] = @num
+        end
+        @popular = @popular.sort_by{|key,val| -val}
+        if @popular != nil
+          i=0
+          while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+            i=i+1
+          end
+          if i<=@popular.length
+            @id = @popular[i][0]
+            @popQ1 = Question.find(@id)
+            @popOp1 = Option.find_all_by_question_id(@id)
+            i=i+1
+            while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+              i=i+1
+            end
+            if i<=@popular.length
+              @id = @popular[i][0]
+              @popQ2 = Question.find(@id)
+              @popOp2 = Option.find_all_by_question_id(@id)
+              i=i+1
+              while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+                i=i+1
+              end
+              if i<=@popular.length
+                @id = @popular[i][0]
+                @popQ3 = Question.find(@id)
+                @popOp3 = Option.find_all_by_question_id(@id)
+              end
+            end
+          end
+        end
+      else
+              @popular = Hash::new
+      @qnum = Question.all.length
+      for i in 1..@qnum
+        @num = Answer.find_all_by_question_id(i).count
+        @popular[i] = @num
+      end
+      @popular = @popular.sort_by{|key,val| -val}
+      if @popular != nil
+        @id = @popular[0][0]
+        @popQ1 = Question.find(@id)
+        @popOp1 = Option.find_all_by_question_id(@id)
+        if @popular.length > 1
+          @id = @popular[1][0]
+          @popQ2 = Question.find(@id)
+          @popOp2 = Option.find_all_by_question_id(@id)
+          if @popular.length > 2
+            @id = @popular[2][0]
+            @popQ3 = Question.find(@id)
+            @popOp3 = Option.find_all_by_question_id(@id)
+          end
+        end
+      end
+
     end
     @question = Question.find(params[:question_id])
     @questioner = Member.find( @question.member_id )
@@ -266,6 +404,44 @@ class AnswersController < ApplicationController
   :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 5, "members.sex" => 2}, 
   :include => :member
 )
+
+#人気の質問
+        @popular = Hash::new
+        @qnum = Question.all.length
+        for i in 1..@qnum
+          @num = Answer.find_all_by_question_id(i).count
+          @popular[i] = @num
+        end
+        @popular = @popular.sort_by{|key,val| -val}
+        if @popular != nil
+          i=0
+          while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+            i=i+1
+          end
+          if i<=@popular.length
+            @id = @popular[i][0]
+            @popQ1 = Question.find(@id)
+            @popOp1 = Option.find_all_by_question_id(@id)
+            i=i+1
+            while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+              i=i+1
+            end
+            if i<=@popular.length
+              @id = @popular[i][0]
+              @popQ2 = Question.find(@id)
+              @popOp2 = Option.find_all_by_question_id(@id)
+              i=i+1
+              while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+                i=i+1
+              end
+              if i<=@popular.length
+                @id = @popular[i][0]
+                @popQ3 = Question.find(@id)
+                @popOp3 = Option.find_all_by_question_id(@id)
+              end
+            end
+          end
+        end
 
   end
 
