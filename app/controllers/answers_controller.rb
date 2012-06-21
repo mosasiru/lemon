@@ -342,7 +342,7 @@ class AnswersController < ApplicationController
     @nameOfOption3 = Option.find_by_question_id_and_order(params[:question_id],3)
     @nameOfOption4 = Option.find_by_question_id_and_order(params[:question_id],4)
     @nameOfOption5 = Option.find_by_question_id_and_order(params[:question_id],5)
-    @member = Member
+    @member = Member.find_by_user_id(@user)
     
     @maleOption1 = Answer.find(
   :all, 
