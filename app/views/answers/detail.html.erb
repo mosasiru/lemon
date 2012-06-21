@@ -7,48 +7,6 @@
 By: <%= @questioner.username  %>     
 Category:<%= @category.name %></code></pre>
 
-  <%if false%> commment sentences
-    <table id="mytable" cellspacing="0" summary="質問の結果">
-
-      <tr>
-        <th scope="col" abbr="Configurations" class="nobg">選択</th>
-        <th scope="col" abbr="全体人数">全体人数</th>
-        <th scope="col" abbr="男子人数">男子人数</th>
-        <th scope="col" abbr="女子人数">女子人数</th>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択1" class="spec"><%= @nameOfOption1.string %></th>
-        <td><%= @option1.count %></td>
-        <td><%= @maleOption1.count %></td>
-        <td><%= @femaleOption1.count %></td>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択2" class="specalt"><%= @nameOfOption2.string %></th>
-        <td class="alt"><%= @option2.count %></td>
-        <td class="alt"><%= @maleOption2.count %></td>
-        <td class="alt"><%= @femaleOption2.count %></td>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択３" class="spec"><%= @nameOfOption3.string %></th>
-        <td><%= @option3.count %></td>
-        <td><%= @maleOption3.count %></td>
-        <td><%= @femaleOption3.count %></td>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択4" class="specalt"><%= @nameOfOption4.string %></th>
-        <td class="alt"><%= @option4.count %></td>
-        <td class="alt"><%= @maleOption4.count %></td>
-        <td class="alt"><%= @femaleOption4.count %></td>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択5" class="spec"><%= @nameOfOption5.string %></th>
-        <td><%= @option5.count %></td>
-        <td><%= @maleOption5.count %></td>
-        <td><%= @femaleOption5.count %></td>
-      </tr>
-    </table>
-  <%end%>
-
   <script>
 
 <% if @nameOfOption5 != nil %>
