@@ -10,16 +10,21 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     <![endif]-->
-
+  
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= stylesheet_link_tag "/css/design", :media => "all" %>
   <%= stylesheet_link_tag "/css/jquery.jqplot", :media => "all" %>
   <%= stylesheet_link_tag "/css/jquery.jqplot.min", :media => "all" %>
+  <%= stylesheet_link_tag "/css/slidingpanels", :media => "all" %>
+
   
   <%= javascript_include_tag "/javascripts/pieGraph" %>
+    <%= javascript_include_tag "/javascripts/pieGraphByMale" %>
+    <%= javascript_include_tag "/javascripts/pieGraphByFemale" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "/javascripts/jquery-1.7.2.min" %>  
-  <%= javascript_include_tag "/javascripts/jquery-1.7.2.min" %>
+  <%= javascript_include_tag "/javascripts/jquery.slidepanel.pack" %>
+
   <%= javascript_include_tag "/jquery/jquery.min" %>
   <%= javascript_include_tag "/jquery/jquery" %>
   <%= javascript_include_tag "/jquery/jquery-1.7.2.min" %>
@@ -52,8 +57,10 @@
   <%= javascript_include_tag "/jqplot/jqplot.highlighter.min" %>
   <%= javascript_include_tag "/jqplot/jqplot.cursor.min" %>
   <%= javascript_include_tag "/jqplot/jqplot.dateAxisRenderer.min" %>
-  
+  <%= javascript_include_tag "/javascripts/jquery.slidepanel.pack" %>
+  <%= stylesheet_link_tag "/css/slidingpanels", :media => "all" %>
     
+
     
     
 
@@ -77,8 +84,8 @@
             <ul class="nav">
               <li><%= link_to "新規作成", "/answers/new" %></li>
               <% if !user_signed_in? %>
-                <li><%= link_to "facebookでログイン", user_omniauth_authorize_path(:facebook) %></li>
-                <li><%= link_to "twitterでログイン", user_omniauth_authorize_path(:twitter)  %></li>
+                <li><%= link_to(image_tag("/images/facebookLogo.jpg",:size=>"70x40",:alt=>"lemonLogo画像"),'/answers/index') %></li>
+                <li><%= link_to(image_tag("/images/twitterLogo.jpg",:size=>"70x40",:alt=>"lemonLogo画像"),'/answers/index') %></li>
               <% end %>
             </ul>
 
@@ -108,8 +115,8 @@
                   <li class="nav-header">Sidebar</li>
                   <li><%= link_to "新規作成", "/answers/new" %></li>
                   <% if !user_signed_in? %>
-                  <li><%= link_to "facebookでログイン", user_omniauth_authorize_path(:facebook)  %></li>
-                  <li><%= link_to "twitterでログイン", user_omniauth_authorize_path(:twitter)  %></li>
+                     <li><%= link_to image_tag("/images/facebookLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:facebook)  %></li>
+                  <li><%= link_to image_tag("/images/twitterLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:twitter)  %></li>
                   <% end %>
                 </ul>
               </div><!--/.well -->

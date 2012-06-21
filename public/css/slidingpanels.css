@@ -1,0 +1,35 @@
+/* CSS Document */
+.panel{
+	text-align: center;
+	height:30px;
+	cursor:pointer;
+	margin: 0px;
+	padding: 0px;
+	background-color: #999;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+}
+.panel a{
+	text-decoration:none;
+	color:#000000;
+}
+ .panel-up{
+	background-attachment: scroll;
+	background-image: url(/images/backtitle-up.gif);
+	background-repeat: no-repeat;
+	background-position: 10px 5px;
+ }
+.panel-down{
+	background-attachment: scroll;
+	background-image: url(/images/backtitle-down.gif);
+	background-repeat: no-repeat;
+	background-position: 10px 5px;
+}
+/*.panel-target{
+	padding:5px;
+	background-color:#CCC;
+}*/
+.panel-closed{
+	display:none;
+}

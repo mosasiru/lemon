@@ -1,43 +1,542 @@
-<h1>detail</h1>
-<h2>アンケートの詳しい結果を見られるよー</h2>
+<%= stylesheet_link_tag "/css/table", :media => "all" %>
 
-<p>質問：<%= @question.title %></p>
-<p>説明：<%= @question.text %></p>
-<p>質問者：<%= @questioner.username  %></p>
-<p>カテゴリー：<%= @category.name %></p>
+<div style="width:600px">
+  <pre><code>
+<h1 style="text-align: center"><%= @question.title %></h1>  
+説明：<%= @question.text %>
+By: <%= @questioner.username  %>     
+Category:<%= @category.name %></code></pre>
 
-<p>円グラフ<br>
-てかとりあえず、<br>
-「回答１」を選んだ人数：<%= @option1.count %><br>
-「回答２」を選んだ人数：<%= @option2.count %></p>
-「回答３」を選んだ人数：<%= @option3.count %></p>
-「回答４」を選んだ人数：<%= @option4.count %></p>
-「回答５」を選んだ人数：<%= @option5.count %></p>
+  <%if false%> commment sentences
+    <table id="mytable" cellspacing="0" summary="質問の結果">
 
-<p>・男女別グラフ？？</p>
-<p>・年齢別グラフ？？</p>
+      <tr>
+        <th scope="col" abbr="Configurations" class="nobg">選択</th>
+        <th scope="col" abbr="全体人数">全体人数</th>
+        <th scope="col" abbr="男子人数">男子人数</th>
+        <th scope="col" abbr="女子人数">女子人数</th>
+      </tr>
+      <tr>
+        <th scope="row" abbr="選択1" class="spec"><%= @nameOfOption1.string %></th>
+        <td><%= @option1.count %></td>
+        <td><%= @maleOption1.count %></td>
+        <td><%= @femaleOption1.count %></td>
+      </tr>
+      <tr>
+        <th scope="row" abbr="選択2" class="specalt"><%= @nameOfOption2.string %></th>
+        <td class="alt"><%= @option2.count %></td>
+        <td class="alt"><%= @maleOption2.count %></td>
+        <td class="alt"><%= @femaleOption2.count %></td>
+      </tr>
+      <tr>
+        <th scope="row" abbr="選択３" class="spec"><%= @nameOfOption3.string %></th>
+        <td><%= @option3.count %></td>
+        <td><%= @maleOption3.count %></td>
+        <td><%= @femaleOption3.count %></td>
+      </tr>
+      <tr>
+        <th scope="row" abbr="選択4" class="specalt"><%= @nameOfOption4.string %></th>
+        <td class="alt"><%= @option4.count %></td>
+        <td class="alt"><%= @maleOption4.count %></td>
+        <td class="alt"><%= @femaleOption4.count %></td>
+      </tr>
+      <tr>
+        <th scope="row" abbr="選択5" class="spec"><%= @nameOfOption5.string %></th>
+        <td><%= @option5.count %></td>
+        <td><%= @maleOption5.count %></td>
+        <td><%= @femaleOption5.count %></td>
+      </tr>
+    </table>
+  <%end%>
 
-<p>「回答１」を選んだ人のコメント</p>
-<% @option1.each do |option1| %>
-<ul><%= option1.comment %>（<%= option1.member_id %>）</ul>
+  <script>
+
+<% if @nameOfOption5 != nil %>
+  
+    document.write('<table id="mytable" cellspacing="0" summary="質問の結果">',
+    '<caption>質問の結果 </caption>');
+    document.write('<tr>',
+    '<th scope="col" abbr="Configurations" class="nobg">選択</th>',
+    '<th scope="col" abbr="全体人数">全体人数</th>',
+    '<th scope="col" abbr="男子人数">男子人数</th>',
+    ' <th scope="col" abbr="女子人数">女子人数</th>',
+    ' </tr>');
+  
+    document.write('<tr>',
+    '<th scope="row" abbr="選択1" class="spec"><%= @nameOfOption1.string %></th>',
+    '<td><%= @option1.count %></td>',
+    '<td><%= @maleOption1.count %></td>',
+    '<td><%= @femaleOption1.count %></td>',
+    '</tr>');
+  
+    document.write('<tr>',
+    '<th scope="row" abbr="選択2" class="specalt"><%= @nameOfOption2.string %></th>',
+    '<td class="alt"><%= @option2.count %></td>',
+    '<td class="alt"><%= @maleOption2.count %></td>',
+    '<td class="alt"><%= @femaleOption2.count %></td>',
+    '</tr>');
+        
+    document.write('<tr>',
+    '<th scope="row" abbr="選択３" class="spec"><%= @nameOfOption3.string %></th>',
+    '<td><%= @option3.count %></td>',
+    '<td><%= @maleOption3.count %></td>',
+    '<td><%= @femaleOption3.count %></td>',
+    '</tr>');
+        
+    document.write('<tr>',
+    '<th scope="row" abbr="選択4" class="specalt"><%= @nameOfOption4.string %></th>',
+    '<td class="alt"><%= @option4.count %></td>',
+    '<td class="alt"><%= @maleOption4.count %></td>',
+    '<td class="alt"><%= @femaleOption4.count %></td>',
+    '</tr>');
+        
+    document.write('<tr>',
+    '<th scope="row" abbr="選択5" class="spec"><%= @nameOfOption5.string %></th>',
+    '<td><%= @option5.count %></td>',
+    '<td><%= @maleOption5.count %></td>',
+    '<td><%= @femaleOption5.count %></td>',
+    '</tr>');
+  
+    document.write('</table>');
+
+<% elsif @nameOfOption4 != nil %>
+
+    document.write('<table id="mytable" cellspacing="0" summary="質問の結果">',
+    '<caption>質問の結果 </caption>');
+    document.write('<tr>',
+    '<th scope="col" abbr="Configurations" class="nobg">選択</th>',
+    '<th scope="col" abbr="全体人数">全体人数</th>',
+    '<th scope="col" abbr="男子人数">男子人数</th>',
+    ' <th scope="col" abbr="女子人数">女子人数</th>',
+    ' </tr>');
+  
+    document.write('<tr>',
+    '<th scope="row" abbr="選択1" class="spec"><%= @nameOfOption1.string %></th>',
+    '<td><%= @option1.count %></td>',
+    '<td><%= @maleOption1.count %></td>',
+    '<td><%= @femaleOption1.count %></td>',
+    '</tr>');
+  
+    document.write('<tr>',
+    '<th scope="row" abbr="選択2" class="specalt"><%= @nameOfOption2.string %></th>',
+    '<td class="alt"><%= @option2.count %></td>',
+    '<td class="alt"><%= @maleOption2.count %></td>',
+    '<td class="alt"><%= @femaleOption2.count %></td>',
+    '</tr>');
+        
+    document.write('<tr>',
+    '<th scope="row" abbr="選択３" class="spec"><%= @nameOfOption3.string %></th>',
+    '<td><%= @option3.count %></td>',
+    '<td><%= @maleOption3.count %></td>',
+    '<td><%= @femaleOption3.count %></td>',
+    '</tr>');
+        
+    document.write('<tr>',
+    '<th scope="row" abbr="選択4" class="specalt"><%= @nameOfOption4.string %></th>',
+    '<td class="alt"><%= @option4.count %></td>',
+    '<td class="alt"><%= @maleOption4.count %></td>',
+    '<td class="alt"><%= @femaleOption4.count %></td>',
+    '</tr>');
+  
+    document.write('</table>');
+
+<% elsif @nameOfOption3 != nil %>
+  
+    document.write('<table id="mytable" cellspacing="0" summary="質問の結果">',
+    '<caption>質問の結果 </caption>');
+    document.write('<tr>',
+    '<th scope="col" abbr="Configurations" class="nobg">選択</th>',
+    '<th scope="col" abbr="全体人数">全体人数</th>',
+    '<th scope="col" abbr="男子人数">男子人数</th>',
+    ' <th scope="col" abbr="女子人数">女子人数</th>',
+    ' </tr>');
+  
+    document.write('<tr>',
+    '<th scope="row" abbr="選択1" class="spec"><%= @nameOfOption1.string %></th>',
+    '<td><%= @option1.count %></td>',
+    '<td><%= @maleOption1.count %></td>',
+    '<td><%= @femaleOption1.count %></td>',
+    '</tr>');
+  
+    document.write('<tr>',
+    '<th scope="row" abbr="選択2" class="specalt"><%= @nameOfOption2.string %></th>',
+    '<td class="alt"><%= @option2.count %></td>',
+    '<td class="alt"><%= @maleOption2.count %></td>',
+    '<td class="alt"><%= @femaleOption2.count %></td>',
+    '</tr>');
+        
+    document.write('<tr>',
+    '<th scope="row" abbr="選択３" class="spec"><%= @nameOfOption3.string %></th>',
+    '<td><%= @option3.count %></td>',
+    '<td><%= @maleOption3.count %></td>',
+    '<td><%= @femaleOption3.count %></td>',
+    '</tr>');
+  
+    document.write('</table>');
+
+
+<% else %>  
+  
+    document.write('<table id="mytable" cellspacing="0" summary="質問の結果">',
+    '<caption>質問の結果 </caption>');
+    document.write('<tr>',
+    '<th scope="col" abbr="Configurations" class="nobg">選択</th>',
+    '<th scope="col" abbr="全体人数">全体人数</th>',
+    '<th scope="col" abbr="男子人数">男子人数</th>',
+    ' <th scope="col" abbr="女子人数">女子人数</th>',
+    ' </tr>');
+  
+    document.write('<tr>',
+    '<th scope="row" abbr="選択1" class="spec"><%= @nameOfOption1.string %></th>',
+    '<td><%= @option1.count %></td>',
+    '<td><%= @maleOption1.count %></td>',
+    '<td><%= @femaleOption1.count %></td>',
+    '</tr>');
+  
+    document.write('<tr>',
+    '<th scope="row" abbr="選択2" class="specalt"><%= @nameOfOption2.string %></th>',
+    '<td class="alt"><%= @option2.count %></td>',
+    '<td class="alt"><%= @maleOption2.count %></td>',
+    '<td class="alt"><%= @femaleOption2.count %></td>',
+    '</tr>');
+          
+    document.write('</table>');
+
 <% end %>
-<p>「回答２」を選んだ人のコメント</p>
-<% @option2.each do |option2| %>
-<ul><%= option2.comment %>（<%= option2.member_id %>）</ul>
-<% end %>
-<p>「回答３」を選んだ人のコメント</p>
-<% @option3.each do |option3| %>
-<ul><%= option3.comment %>（<%= option3.member_id %>）</ul>
-<% end %>
-<p>「回答４」を選んだ人のコメント</p>
-<% @option4.each do |option4| %>
-<ul><%= option4.comment %>（<%= option4.member_id %>）</ul>
-<% end %>
-<p>「回答５」を選んだ人のコメント</p>
-<% @option5.each do |option5| %>
-<ul><%= option5.comment %>（<%= option5.member_id %>）</ul>
-<% end %>
+  </script>
+</div>
 
 
-<p><%= link_to('sammaryへ戻る','/answers/show/'+@question.id.to_s) %></p>
-<p><%= link_to('トップへ戻る','/answers/index') %></p>
+<script>
+  
+  opt1=<%= @option1.count %>
+  opt2=<%= @option2.count %>
+  opt3=<%= @option3.count %>
+  opt4=<%= @option4.count %>  
+  opt5=<%= @option5.count %>
+
+  opt1s="<%= @nameOfOption1.string %>"
+  opt2s="<%= @nameOfOption2.string %>"
+
+<% if @nameOfOption5 != nil %>
+  
+    opt3s="<%= @nameOfOption3.string %>"
+    opt4s="<%= @nameOfOption4.string %>"
+    opt5s="<%= @nameOfOption5.string %>"
+
+
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pie = pieGraphfunction5(opt1,opt2,opt3,opt4,opt5,opt1s,opt2s,opt3s,opt4s,opt5s)
+    })
+
+<% elsif @nameOfOption4 != nil %>
+    opt3s="<%= @nameOfOption3.string %>"
+    opt4s="<%= @nameOfOption4.string %>"
+    opt5s=""
+
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pie = pieGraphfunction4(opt1,opt2,opt3,opt4,opt1s,opt2s,opt3s,opt4s)
+    })
+
+<% elsif @nameOfOption3 != nil %>
+    opt3s="<%= @nameOfOption3.string %>"
+    opt4s=""
+    opt5s=""
+
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pie = pieGraphfunction3(opt1,opt2,opt3,opt1s,opt2s,opt3s)
+    })
+
+<% else %>  
+    opt3s=""
+    opt4s=""
+    opt5s=""
+  
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pie = pieGraphfunction2(opt1,opt2,opt1s,opt2s)
+    })
+
+<% end %>
+</script>
+<br>
+<div style="width:600px"><pre><code><h3 style="text-align: center">社会全体はどう思いますか？</h3></code></pre>
+</div>
+
+<div id="chartDiv1" style="width:600px; height:400px;"></div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.demo1').slidePanel({role:'accordion'});
+    $('.demo2').slidePanel({status:'open'});
+    $('.demo3').slidePanel({status:'open'});
+    //    $('.demo4').slidePanel({role:'accordion'});
+  });						
+</script>
+
+<div style="width:600px">  
+
+  <h3 class="demo1">"<font color="blue"><%= @nameOfOption1.string %></font>"を選んだ人のコメント</h3>
+  <div>  
+    <br>
+    <% @option1.each do |option1| %>
+      <%if option1.comment!=""%>
+        <% memberId= option1.member_id %>
+        <pre><code> <%= option1.comment %> </code>
+                                <code style="float:right">By:<%=  @member.find(:first, 
+              :conditions => ['members.id = ?', memberId]).username %></code></pre>
+        <br>
+      <%end%>
+    <% end %>
+  </div>
+
+  <h3 class="demo1">"<font color="blue"><%= @nameOfOption2.string %></font>"を選んだ人のコメント</h3>
+
+  <div>
+    <br>
+    <% @option2.each do |option2| %>
+      <%if option2.comment!=""%>
+        <% memberId= option2.member_id %>
+        <pre><code style="width:600px"> <%= option2.comment %> </code>
+                            <code style="float:right">By:<%=  @member.find(:first, 
+              :conditions => ['members.id = ?', memberId]).username %></code></pre>
+        <br>
+
+      <%end%>
+    <% end %>
+  </div>
+
+  <script>
+
+<% if @nameOfOption5 != nil %>
+  
+    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption3.string %></font>"を選んだ人のコメント</h3>',
+    '<div>',
+    '<br>',
+    '<% @option3.each do |option3| %>',
+      '<%if option3.comment!=""%>',
+        '<% memberId= option3.member_id %>',
+        '<pre><code style="width:600px"> <%= option3.comment %> </code>',
+        '<code style="float:right">By:<%=  @member.find(:first, 
+        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
+        '<br>',
+        '<%end%>',
+      '<% end %>'
+    ,'</div>');
+
+    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption4.string %></font>"を選んだ人のコメント</h3>',
+    '<div>',
+    '<br>',
+    '<% @option4.each do |option4| %>',
+      '<%if option4.comment!=""%>',
+        '<% memberId= option4.member_id %>',
+        '<div style="width:600px"><pre><code style="width:600px"> <%= option4.comment %> </code>',
+        '<code style="float:right">By:<%=  @member.find(:first, 
+        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
+        '<br>',
+        '<%end%>',
+      '<% end %>',
+    '</div>');
+ 
+    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption5.string %></font>"を選んだ人のコメント</h3>',
+    '<div>',
+    '<br>',
+    '<% @option5.each do |option5| %>',
+      '<%if option5.comment!=""%>',
+        '<% memberId= option5.member_id %>',
+        '<div style="width:600px"><pre><code style="width:600px"> <%= option5.comment %> </code>',
+        '<code style="float:right">By:<%=  @member.find(:first, 
+        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
+        '<br>',
+        '<%end%>',
+      '<% end %>',
+    '</div>');
+
+<% elsif @nameOfOption4 != nil %>
+
+    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption3.string %></font>"を選んだ人のコメント</h3>',
+    '<div>',
+    '<br>',
+    '<% @option3.each do |option3| %>',
+      '<%if option3.comment!=""%>',
+        '<% memberId= option3.member_id %>',
+        '<pre><code style="width:600px"> <%= option3.comment %> </code>',
+        '<code style="float:right">By:<%=  @member.find(:first, 
+        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
+        '<br>',
+        '<%end%>',
+      '<% end %>'
+    ,'</div>');
+
+    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption4.string %></font>"を選んだ人のコメント</h3>',
+    '<div>',
+    '<br>',
+    '<% @option4.each do |option4| %>',
+      '<%if option4.comment!=""%>',
+        '<% memberId= option4.member_id %>',
+        '<div style="width:600px"><pre><code style="width:600px"> <%= option4.comment %> </code>',
+        '<code style="float:right">By:<%=  @member.find(:first, 
+        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
+        '<br>',
+        '<%end%>',
+      '<% end %>',
+    '</div>');
+
+<% elsif @nameOfOption3 != nil %>
+
+    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption3.string %></font>"を選んだ人のコメント</h3>',
+    '<div>',
+    '<br>',
+    '<% @option3.each do |option3| %>',
+      '<%if option3.comment!=""%>',
+        '<% memberId= option3.member_id %>',
+        '<pre><code style="width:600px"> <%= option3.comment %> </code>',
+        '<code style="float:right">By:<%=  @member.find(:first, 
+        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
+        '<br>',
+        '<%end%>',
+      '<% end %>'
+    ,'</div>');
+
+<% end %>
+  </script>
+
+  <!--/demo2///////////////////////////--><br>
+
+  <h3 class="demo2">男子はどう思いますか？</h3>
+  <div>
+    <script>
+  
+      optMale1=<%= @maleOption1.count %>
+      optMale2=<%= @maleOption2.count %>
+      optMale3=<%= @maleOption3.count %>
+      optMale4=<%= @maleOption4.count %>  
+      optMale5=<%= @maleOption5.count %>
+
+      opt1s="<%= @nameOfOption1.string %>"
+      opt2s="<%= @nameOfOption2.string %>"
+
+<% if @nameOfOption5 != nil %>
+  
+    opt3s="<%= @nameOfOption3.string %>"
+    opt4s="<%= @nameOfOption4.string %>"
+    opt5s="<%= @nameOfOption5.string %>"
+
+
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pieMale = pieGraphfunctionMale5(optMale1,optMale2,optMale3,optMale4,optMale5,opt1s,opt2s,opt3s,opt4s,opt5s)
+    })
+
+<% elsif @nameOfOption4 != nil %>
+    opt3s="<%= @nameOfOption3.string %>"
+    opt4s="<%= @nameOfOption4.string %>"
+    opt5s=""
+
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pieMale = pieGraphfunctionMale4(optMale1,optMale2,optMale3,optMale4,opt1s,opt2s,opt3s,opt4s)
+    })
+
+<% elsif @nameOfOption3 != nil %>
+    opt3s="<%= @nameOfOption3.string %>"
+    opt4s=""
+    opt5s=""
+
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pieMale = pieGraphfunctionMale3(optMale1,optMale2,optMale3,opt1s,opt2s,opt3s)
+    })
+
+<% else %>  
+    opt3s=""
+    opt4s=""
+    opt5s=""
+  
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pieMale = pieGraphfunctionMale2(optMale1,optMale2,opt1s,opt2s)
+    })
+
+<% end %>
+    </script>
+
+    <div id="chartDivMale" style="width:600px; height:450px;" /></div>
+
+</div>
+
+
+<!--/demo4///////////////////////////--><br>
+
+<h3 class="demo3">女子はどう思いますか</h3>
+
+<div>
+  <script>
+  
+    optFemale1=<%= @femaleOption1.count %>
+    optFemale2=<%= @femaleOption2.count %>
+    optFemale3=<%= @femaleOption3.count %>
+    optFemale4=<%= @femaleOption4.count %>  
+    optFemale5=<%= @femaleOption5.count %>
+
+    opt1s="<%= @nameOfOption1.string %>"
+    opt2s="<%= @nameOfOption2.string %>"
+
+<% if @nameOfOption5 != nil %>
+  
+    opt3s="<%= @nameOfOption3.string %>"
+    opt4s="<%= @nameOfOption4.string %>"
+    opt5s="<%= @nameOfOption5.string %>"
+
+
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pieFemale = pieGraphfunctionFemale5(optFemale1,optFemale2,optFemale3,optFemale4,optFemale5,opt1s,opt2s,opt3s,opt4s,opt5s)
+    })
+
+<% elsif @nameOfOption4 != nil %>
+    opt3s="<%= @nameOfOption3.string %>"
+    opt4s="<%= @nameOfOption4.string %>"
+    opt5s=""
+
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pieFemale = pieGraphfunctionFemale4(optFemale1,optFemale2,optFemale3,optFemale4,opt1s,opt2s,opt3s,opt4s)
+    })
+
+<% elsif @nameOfOption3 != nil %>
+    opt3s="<%= @nameOfOption3.string %>"
+    opt4s=""
+    opt5s=""
+
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pieFemale = pieGraphfunctionFemale3(optFemale1,optFemale2,optFemale3,opt1s,opt2s,opt3s)
+    })
+
+<% else %>  
+    opt3s=""
+    opt4s=""
+    opt5s=""
+  
+    $(document).ready(function(){
+      // Make this a pie chart.
+      var pieFemale = pieGraphfunctionFemale2(optFemale1,optFemale2,opt1s,opt2s)
+    })
+
+<% end %>
+  </script>
+
+  <div id="chartDivFemale" style="width:600px; height:450px;" /></div>
+
+</div>
+
+</div><!---->
+
+<h1><%= link_to('Summaryへ戻る','/answers/show/'+@question.id.to_s) %></h1>
+<h1><%= link_to('トップへ戻る','/answers/index') %></h1>
+<br>
