@@ -7,48 +7,6 @@
 By: <%= @questioner.username  %>     
 Category:<%= @category.name %></code></pre>
 
-  <%if false%> commment sentences
-    <table id="mytable" cellspacing="0" summary="質問の結果">
-
-      <tr>
-        <th scope="col" abbr="Configurations" class="nobg">選択</th>
-        <th scope="col" abbr="全体人数">全体人数</th>
-        <th scope="col" abbr="男子人数">男子人数</th>
-        <th scope="col" abbr="女子人数">女子人数</th>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択1" class="spec"><%= @nameOfOption1.string %></th>
-        <td><%= @option1.count %></td>
-        <td><%= @maleOption1.count %></td>
-        <td><%= @femaleOption1.count %></td>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択2" class="specalt"><%= @nameOfOption2.string %></th>
-        <td class="alt"><%= @option2.count %></td>
-        <td class="alt"><%= @maleOption2.count %></td>
-        <td class="alt"><%= @femaleOption2.count %></td>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択３" class="spec"><%= @nameOfOption3.string %></th>
-        <td><%= @option3.count %></td>
-        <td><%= @maleOption3.count %></td>
-        <td><%= @femaleOption3.count %></td>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択4" class="specalt"><%= @nameOfOption4.string %></th>
-        <td class="alt"><%= @option4.count %></td>
-        <td class="alt"><%= @maleOption4.count %></td>
-        <td class="alt"><%= @femaleOption4.count %></td>
-      </tr>
-      <tr>
-        <th scope="row" abbr="選択5" class="spec"><%= @nameOfOption5.string %></th>
-        <td><%= @option5.count %></td>
-        <td><%= @maleOption5.count %></td>
-        <td><%= @femaleOption5.count %></td>
-      </tr>
-    </table>
-  <%end%>
-
   <script>
 
 <% if @nameOfOption5 != nil %>
@@ -263,8 +221,7 @@ Category:<%= @category.name %></code></pre>
 <% end %>
 </script>
 <br>
-<div style="width:600px"><pre><code><h3 style="text-align: center">社会全体はどう思いますか？</h3></code></pre>
-</div>
+<div style="width:600px"><pre><code><h3 style="text-align: center">社会全体はどう思いますか？</h3></code></pre></div>
 
 <div id="chartDiv1" style="width:600px; height:400px;"></div>
 
@@ -320,7 +277,7 @@ Category:<%= @category.name %></code></pre>
     '<% @option3.each do |option3| %>',
       '<%if option3.comment!=""%>',
         '<% memberId= option3.member_id %>',
-        '<pre><code style="width:600px"> <%= option3.comment %> </code>',
+        '<pre><code> <%= option3.comment %> </code>',
         '<code style="float:right">By:<%=  @member.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
@@ -334,7 +291,7 @@ Category:<%= @category.name %></code></pre>
     '<% @option4.each do |option4| %>',
       '<%if option4.comment!=""%>',
         '<% memberId= option4.member_id %>',
-        '<div style="width:600px"><pre><code style="width:600px"> <%= option4.comment %> </code>',
+        '<pre><code> <%= option4.comment %> </code>',
         '<code style="float:right">By:<%=  @member.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
@@ -348,7 +305,7 @@ Category:<%= @category.name %></code></pre>
     '<% @option5.each do |option5| %>',
       '<%if option5.comment!=""%>',
         '<% memberId= option5.member_id %>',
-        '<div style="width:600px"><pre><code style="width:600px"> <%= option5.comment %> </code>',
+        '<pre><code> <%= option5.comment %> </code>',
         '<code style="float:right">By:<%=  @member.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
@@ -364,7 +321,7 @@ Category:<%= @category.name %></code></pre>
     '<% @option3.each do |option3| %>',
       '<%if option3.comment!=""%>',
         '<% memberId= option3.member_id %>',
-        '<pre><code style="width:600px"> <%= option3.comment %> </code>',
+        '<pre><code> <%= option3.comment %> </code>',
         '<code style="float:right">By:<%=  @member.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
@@ -378,7 +335,7 @@ Category:<%= @category.name %></code></pre>
     '<% @option4.each do |option4| %>',
       '<%if option4.comment!=""%>',
         '<% memberId= option4.member_id %>',
-        '<div style="width:600px"><pre><code style="width:600px"> <%= option4.comment %> </code>',
+        '<pre><code> <%= option4.comment %> </code>',
         '<code style="float:right">By:<%=  @member.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
@@ -394,7 +351,7 @@ Category:<%= @category.name %></code></pre>
     '<% @option3.each do |option3| %>',
       '<%if option3.comment!=""%>',
         '<% memberId= option3.member_id %>',
-        '<pre><code style="width:600px"> <%= option3.comment %> </code>',
+        '<pre><code> <%= option3.comment %> </code>',
         '<code style="float:right">By:<%=  @member.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
