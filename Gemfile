@@ -40,7 +40,7 @@ gem 'jquery-rails'
 group :deployment, :test do
   gem 'rspec-rails'
   gem 'guard-rails'
-  gem 'rb-fsevent' if RUBY_PLATFORM =~ /darwin/i
+#gem 'rb-fsevent' if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-livereload'
 end
 
