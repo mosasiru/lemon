@@ -244,7 +244,7 @@ Category:<%= @category.name %></code></pre>
       <%if option1.comment!=""%>
         <% memberId= option1.member_id %>
         <pre><code> <%= option1.comment %> </code>
-                                <code style="float:right">By:<%=  @member.find(:first, 
+                                <code style="float:right">By:<%=  @member_detail.find(:first, 
               :conditions => ['members.id = ?', memberId]).username %></code></pre>
         <br>
       <%end%>
@@ -259,7 +259,7 @@ Category:<%= @category.name %></code></pre>
       <%if option2.comment!=""%>
         <% memberId= option2.member_id %>
         <pre><code style="width:600px"> <%= option2.comment %> </code>
-                            <code style="float:right">By:<%=  @member.find(:first, 
+                            <code style="float:right">By:<%=  @member_detail.find(:first, 
               :conditions => ['members.id = ?', memberId]).username %></code></pre>
         <br>
 
@@ -278,7 +278,7 @@ Category:<%= @category.name %></code></pre>
       '<%if option3.comment!=""%>',
         '<% memberId= option3.member_id %>',
         '<pre><code> <%= option3.comment %> </code>',
-        '<code style="float:right">By:<%=  @member.find(:first, 
+        '<code style="float:right">By:<%=  @member_detail.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
         '<%end%>',
@@ -292,7 +292,7 @@ Category:<%= @category.name %></code></pre>
       '<%if option4.comment!=""%>',
         '<% memberId= option4.member_id %>',
         '<pre><code> <%= option4.comment %> </code>',
-        '<code style="float:right">By:<%=  @member.find(:first, 
+        '<code style="float:right">By:<%=  @member_detail.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
         '<%end%>',
@@ -306,7 +306,7 @@ Category:<%= @category.name %></code></pre>
       '<%if option5.comment!=""%>',
         '<% memberId= option5.member_id %>',
         '<pre><code> <%= option5.comment %> </code>',
-        '<code style="float:right">By:<%=  @member.find(:first, 
+        '<code style="float:right">By:<%=  @member_detail.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
         '<%end%>',
@@ -322,7 +322,7 @@ Category:<%= @category.name %></code></pre>
       '<%if option3.comment!=""%>',
         '<% memberId= option3.member_id %>',
         '<pre><code> <%= option3.comment %> </code>',
-        '<code style="float:right">By:<%=  @member.find(:first, 
+        '<code style="float:right">By:<%=  @member_detail.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
         '<%end%>',
@@ -336,7 +336,7 @@ Category:<%= @category.name %></code></pre>
       '<%if option4.comment!=""%>',
         '<% memberId= option4.member_id %>',
         '<pre><code> <%= option4.comment %> </code>',
-        '<code style="float:right">By:<%=  @member.find(:first, 
+        '<code style="float:right">By:<%=  @member_detail.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
         '<%end%>',
@@ -352,7 +352,7 @@ Category:<%= @category.name %></code></pre>
       '<%if option3.comment!=""%>',
         '<% memberId= option3.member_id %>',
         '<pre><code> <%= option3.comment %> </code>',
-        '<code style="float:right">By:<%=  @member.find(:first, 
+        '<code style="float:right">By:<%=  @member_detail.find(:first, 
         :conditions => ['members.id = ?', memberId]).username %></code></pre>',
         '<br>',
         '<%end%>',
