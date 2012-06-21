@@ -81,6 +81,7 @@
                 <li><%= link_to "twitterでログイン", user_omniauth_authorize_path(:twitter)  %></li>
               <% end %>
             </ul>
+
 <% if false %>
             <form class="navbar-search pull-right">
                <input type="text" class="search-query" placeholder="Search">
@@ -112,6 +113,12 @@
                   <% end %>
                 </ul>
               </div><!--/.well -->
+              <div class="well sidebar-nav">
+              	  <h4>↓人気の質問に答えよう↓</h4>
+<p><%= @popular %></p>
+              	  
+              </div>
+              
             </div><!--/span-->
         </div><!--/row-->
       </div><!--/content-->

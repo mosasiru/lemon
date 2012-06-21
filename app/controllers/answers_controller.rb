@@ -1,7 +1,15 @@
 class AnswersController < ApplicationController
   before_filter :authenticate_user!, :except=>[:show, :index, :search, :searchview]
 
+
   def index
+  @popular = Hash::new
+  @qnum = Question.all.length
+  for i in 1..@qnum
+    @num = Answer.find_all_by_question_id(i).count
+    @popular[i] = @num
+  end
+
     if user_signed_in?
       @user = current_user.id
       if Member.where(:user_id => @user).exists?
