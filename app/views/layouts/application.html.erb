@@ -84,8 +84,8 @@
             <ul class="nav">
               <li><%= link_to "新規作成", "/answers/new" %></li>
               <% if !user_signed_in? %>
-                <li><%= link_to "facebookでログイン", user_omniauth_authorize_path(:facebook) %></li>
-                <li><%= link_to "twitterでログイン", user_omniauth_authorize_path(:twitter)  %></li>
+                <li><%= link_to(image_tag("/images/facebookLogo.jpg",:size=>"70x40",:alt=>"lemonLogo画像"),'/answers/index') %></li>
+                <li><%= link_to(image_tag("/images/twitterLogo.jpg",:size=>"70x40",:alt=>"lemonLogo画像"),'/answers/index') %></li>
               <% end %>
             </ul>
 <% if false %>
@@ -114,8 +114,8 @@
                   <li class="nav-header">Sidebar</li>
                   <li><%= link_to "新規作成", "/answers/new" %></li>
                   <% if !user_signed_in? %>
-                  <li><%= link_to "facebookでログイン", user_omniauth_authorize_path(:facebook)  %></li>
-                  <li><%= link_to "twitterでログイン", user_omniauth_authorize_path(:twitter)  %></li>
+                     <li><%= link_to image_tag("/images/facebookLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:facebook)  %></li>
+                  <li><%= link_to image_tag("/images/twitterLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:twitter)  %></li>
                   <% end %>
                 </ul>
               </div><!--/.well -->
