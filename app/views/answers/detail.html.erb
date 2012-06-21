@@ -1,11 +1,20 @@
 <%= stylesheet_link_tag "/css/table", :media => "all" %>
 
 <div style="width:600px">
-  <pre><code>
-<h1 style="text-align: center"><%= @question.title %></h1>  
-説明：<%= @question.text %>
-By: <%= @questioner.username  %>     
-Category:<%= @category.name %></code></pre>
+<div class="well">
+<h2><%= @question.title %></h2>  
+<p class="well2"><%= @question.text %></p>
+
+<dl>
+  <dt>作成者</dt><dd><%= @questioner.username  %>さん (<%= @question.created_at.to_s[0..15]%>) </dd>     
+  <dt>カテゴリー</dt><dd><%= @category.name %></dd>
+</dl>
+</div>
+
+<%#*<div class="well2" style="width:600px;"><h2 style="text-align: center">皆の回答</h3></div>%>
+
+<div id="chartDiv1" style="width:600px; height:400px;"></div>
+
 
   <script>
 
@@ -221,10 +230,6 @@ Category:<%= @category.name %></code></pre>
 <% end %>
 </script>
 <br>
-<div style="width:600px"><pre><code><h3 style="text-align: center">社会全体はどう思いますか？</h3></code></pre></div>
-
-<div id="chartDiv1" style="width:600px; height:400px;"></div>
-
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -237,32 +242,30 @@ Category:<%= @category.name %></code></pre>
 
 <div style="width:600px">  
 
-  <h3 class="demo1">"<font color="blue"><%= @nameOfOption1.string %></font>"を選んだ人のコメント</h3>
+  <h3 class="demo1"><span class="str"><%= @nameOfOption1.string %></span>を選んだ人のコメント</h3>
   <div>  
     <br>
     <% @option1.each do |option1| %>
       <%if option1.comment!=""%>
         <% memberId= option1.member_id %>
-        <pre><code> <%= option1.comment %> </code>
-                                <code style="float:right">By:<%=  @member_detail.find(:first, 
-              :conditions => ['members.id = ?', memberId]).username %></code></pre>
-        <br>
+         <div class="well2"><%= option1.comment %> 
+         <span class="pull-right">By:<%=  @member_detail.find(:first, 
+              :conditions => ['members.id = ?', memberId]).username %></span>
+        </div>
       <%end%>
     <% end %>
   </div>
 
-  <h3 class="demo1">"<font color="blue"><%= @nameOfOption2.string %></font>"を選んだ人のコメント</h3>
+  <h3 class="demo1"><span class="str"><%= @nameOfOption2.string %></span>を選んだ人のコメント</h3>
 
   <div>
-    <br>
     <% @option2.each do |option2| %>
       <%if option2.comment!=""%>
         <% memberId= option2.member_id %>
-        <pre><code style="width:600px"> <%= option2.comment %> </code>
-                            <code style="float:right">By:<%=  @member_detail.find(:first, 
-              :conditions => ['members.id = ?', memberId]).username %></code></pre>
-        <br>
-
+         <div class="well2"><%= option2.comment %> 
+         <span class="pull-right">By:<%=  @member_detail.find(:first, 
+              :conditions => ['members.id = ?', memberId]).username %></span>
+        </div>
       <%end%>
     <% end %>
   </div>
@@ -271,35 +274,33 @@ Category:<%= @category.name %></code></pre>
 
 <% if @nameOfOption5 != nil %>
   
-    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption3.string %></font>"を選んだ人のコメント</h3>',
+    document.write('<h3 class="demo1"><span class="str"><%= @nameOfOption3.string %></span>を選んだ人のコメント</h3>',
     '<div>',
-    '<br>',
     '<% @option3.each do |option3| %>',
       '<%if option3.comment!=""%>',
         '<% memberId= option3.member_id %>',
-        '<pre><code> <%= option3.comment %> </code>',
-        '<code style="float:right">By:<%=  @member_detail.find(:first, 
-        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
-        '<br>',
+        '<div class="well2"><%= option3.comment %>',
+         '<span class="pull-right">By:<%=  @member_detail.find(:first,
+        :conditions => ["members.id = ?", memberId]).username %></span>',
+        '</div>',
         '<%end%>',
       '<% end %>'
     ,'</div>');
 
-    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption4.string %></font>"を選んだ人のコメント</h3>',
+    document.write('<h3 class="demo1"><span class="str"><%= @nameOfOption4.string %></span>を選んだ人のコメント</h3>',
     '<div>',
-    '<br>',
     '<% @option4.each do |option4| %>',
       '<%if option4.comment!=""%>',
         '<% memberId= option4.member_id %>',
-        '<pre><code> <%= option4.comment %> </code>',
-        '<code style="float:right">By:<%=  @member_detail.find(:first, 
-        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
-        '<br>',
+        '<div class="well2"><%= option4.comment %>',
+         '<span class="pull-right">By:<%=  @member_detail.find(:first,
+        :conditions => ["members.id = ?", memberId]).username %></span>',
+        '</div>',
         '<%end%>',
       '<% end %>',
     '</div>');
  
-    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption5.string %></font>"を選んだ人のコメント</h3>',
+    document.write('<h3 class="demo"><span class="str"><%= @nameOfOption5.string %></span>を選んだ人のコメント</h3>',
     '<div>',
     '<br>',
     '<% @option5.each do |option5| %>',
@@ -315,46 +316,44 @@ Category:<%= @category.name %></code></pre>
 
 <% elsif @nameOfOption4 != nil %>
 
-    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption3.string %></font>"を選んだ人のコメント</h3>',
+    document.write('<h3 class="demo1"><span class="str"><%= @nameOfOption3.string %></span>を選んだ人のコメント</h3>',
     '<div>',
-    '<br>',
+
     '<% @option3.each do |option3| %>',
       '<%if option3.comment!=""%>',
         '<% memberId= option3.member_id %>',
-        '<pre><code> <%= option3.comment %> </code>',
-        '<code style="float:right">By:<%=  @member_detail.find(:first, 
-        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
-        '<br>',
+        '<div class="well2"><%= option3.comment %>',
+         '<span class="pull-right">By:<%=  @member_detail.find(:first,
+        :conditions => ["members.id = ?", memberId]).username %></span>',
+        '</div>',
         '<%end%>',
       '<% end %>'
     ,'</div>');
 
-    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption4.string %></font>"を選んだ人のコメント</h3>',
+    document.write('<h3 class="demo1"><span class="str"><%= @nameOfOption4.string %></span>を選んだ人のコメント</h3>',
     '<div>',
-    '<br>',
     '<% @option4.each do |option4| %>',
       '<%if option4.comment!=""%>',
         '<% memberId= option4.member_id %>',
-        '<pre><code> <%= option4.comment %> </code>',
-        '<code style="float:right">By:<%=  @member_detail.find(:first, 
-        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
-        '<br>',
+        '<div class="well2"><%= option4.comment %>',
+         '<span class="pull-right">By:<%=  @member_detail.find(:first,
+        :conditions => ["members.id = ?", memberId]).username %></span>',
+        '</div>',
         '<%end%>',
       '<% end %>',
     '</div>');
 
 <% elsif @nameOfOption3 != nil %>
 
-    document.write('<h3 class="demo1">"<font color="blue"><%= @nameOfOption3.string %></font>"を選んだ人のコメント</h3>',
+    document.write('<h3 class="demo1"><span class="str"><%= @nameOfOption3.string %></span>を選んだ人のコメント</h3>',
     '<div>',
-    '<br>',
     '<% @option3.each do |option3| %>',
       '<%if option3.comment!=""%>',
         '<% memberId= option3.member_id %>',
-        '<pre><code> <%= option3.comment %> </code>',
-        '<code style="float:right">By:<%=  @member_detail.find(:first, 
-        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
-        '<br>',
+        '<div class="well2"><%= option3.comment %>',
+         '<span class="pull-right">By:<%=  @member_detail.find(:first,
+        :conditions => ["members.id = ?", memberId]).username %></span>',
+        '</div>',
         '<%end%>',
       '<% end %>'
     ,'</div>');
@@ -364,7 +363,7 @@ Category:<%= @category.name %></code></pre>
 
   <!--/demo2///////////////////////////--><br>
 
-  <h3 class="demo2">男子はどう思いますか？</h3>
+  <h3 class="demo2">男子の回答</h3>
   <div>
     <script>
   
@@ -429,7 +428,7 @@ Category:<%= @category.name %></code></pre>
 
 <!--/demo4///////////////////////////--><br>
 
-<h3 class="demo3">女子はどう思いますか</h3>
+<h3 class="demo3">女子の回答</h3>
 
 <div>
   <script>
@@ -494,6 +493,5 @@ Category:<%= @category.name %></code></pre>
 
 </div><!---->
 
-<h1><%= link_to('Summaryへ戻る','/answers/show/'+@question.id.to_s) %></h1>
-<h1><%= link_to('トップへ戻る','/answers/index') %></h1>
+<h4><%= link_to('トップへ戻る','/answers/index') %></h4>
 <br>

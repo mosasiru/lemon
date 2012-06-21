@@ -1,24 +1,8 @@
 <%= javascript_include_tag '/javascripts/index' %>
 
 
-<h1>アンケート</h1>
-<h2 class="well">アンケートページへようこそ！</h2>
-
 <%#ここからsearchviewと同じ%>
 
-<p><span style="background-color:#ffff99"><% if user_signed_in? %><%= @member.username%><% else %>ゲスト<% end %></span>さんこんにちは！</p>
-
-
-
-<p class="right"><%= link_to('アンケートの新規作成','/answers/new') %></p>
-<p class="right"><% if user_signed_in? %>
-
-	<%#= link_to 'ログアウト(old)', [:destroy, :user_session], {:method => "delete"} %>
-  	<%= link_to 'ログアウト', destroy_user_session_path %>
-
-	<% else %>
-	<%#= link_to 'ログイン(old)', [:new, :user_session] %> <%#= link_to '新規ユーザー登録(old)', [:new, :user_registration]%>
-	<% end %></p>
 
 <%#ここまでsearchview%>
 
@@ -36,7 +20,7 @@ else
 end
 %>
 	<% if @recommend == nil %>
-		<p>質問がありません。</p>
+		<%#*<p>質問がありません。</p>%>
 	<% else %>
 		<h3>あなたにおすすめの質問：<%= @recommend.title %></h3>
 		<div class="floatleft">
@@ -55,19 +39,19 @@ end
 		<% @option4 = @option4s.detect{|x| x.question_id == @recommend.id} %>
 		<% @option5 = @option5s.detect{|x| x.question_id == @recommend.id} %>
 		<% if @option1 != nil %>
-		<label><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
+		<label class="radio"><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
 		<% end %>
 		<% if @option2 != nil %>
-		<label><%= radio_button :answer, :ans, '2' %><%= @option2.string %></label>
+		<label class="radio"><%= radio_button :answer, :ans, '2' %><%= @option2.string %></label>
 		<% end %>
 		<% if @option3 != nil %>
-		<label><%= radio_button :answer, :ans, '3' %><%= @option3.string %></label>
+		<label class="radio"><%= radio_button :answer, :ans, '3' %><%= @option3.string %></label>
 		<% end %>
 		<% if @option4 != nil %>
-		<label><%= radio_button :answer, :ans, '4' %><%= @option4.string %></label>
+		<label class="radio"><%= radio_button :answer, :ans, '4' %><%= @option4.string %></label>
 		<% end %>
 		<% if @option5 != nil %>
-		<label><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
+		<label class="radio"><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
 		<% end %>
 		<label>コメント<%= text_field :answer, :comment %></label>
                 <%= submit_tag '送信' %>
@@ -81,45 +65,20 @@ end
 
 <table class="table table-striped">
 
-<tr><th>質問</th><th>回答１</th><th>回答２</th><th>回答３</th><th>回答４</th><th>回答５</th><th>投票</th></tr>
+<tr><th>質問</th><th>投票</th></tr>
 
 <% @questions.each do |question| %>
-<tr><td><%= link_to  question.title , '/answers/show/'+question.id.to_s %></td>
+<tr><td>
+    <h4><%= link_to  question.title , '/answers/show/'+question.id.to_s %></h5>
+    <br>
+    <h6><%= question.text   %></h6>
+  </td>
 <% @option1 = @option1s.detect{|x| x.question_id == question.id} %>
 <% @option2 = @option2s.detect{|x| x.question_id == question.id} %>
 <% @option3 = @option3s.detect{|x| x.question_id == question.id} %>
 <% @option4 = @option4s.detect{|x| x.question_id == question.id} %>
 <% @option5 = @option5s.detect{|x| x.question_id == question.id} %>
-<td>
-	<% if @option1 != nil %>
-	<%= @answer1.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	-
-	<% end %></td>
-<td>
-	<% if @option2 != nil %>
-	<%= @answer2.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	-
-	<% end %></td>
-<td>
-	<% if @option3 != nil %>
-	<%= @answer3.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	-
-	<% end %></td>
-<td>
-	<% if @option4 != nil %>
-	<%= @answer4.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	-
-	<% end %></td>
-<td>
-	<% if @option5 != nil %>
-	<%= @answer5.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	
-	<% end %></td>
+
 <td>
 <% if user_signed_in? and Question.where(:id => question.id.to_s, :member_id => @member.id).exists?  %>
 あなたの質問に投票することはできません。
@@ -130,19 +89,19 @@ end
 <%= hidden_field :answer, :question_id, { :value => question.id }%>
 <%= hidden_field :answer, :member_id, { :value => @member.id } if user_signed_in?%>
 <% if @option1 != nil %>
-<label><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
+<label class="radio"><%= radio_button :answer, :ans, '1' %><%= @option1.string %></label>
 <% end %>
 <% if @option2 != nil %>
-<label><%= radio_button :answer, :ans, '2' %><%= @option2.string %></label>
+<label class="radio"><%= radio_button :answer, :ans, '2' %><%= @option2.string %></label>
 <% end %>
 <% if @option3 != nil %>
-<label><%= radio_button :answer, :ans, '3' %><%= @option3.string %></label>
+<label class="radio"><%= radio_button :answer, :ans, '3' %><%= @option3.string %></label>
 <% end %>
 <% if @option4 != nil %>
-<label><%= radio_button :answer, :ans, '4' %><%= @option4.string %></label>
+<label class="radio"><%= radio_button :answer, :ans, '4' %><%= @option4.string %></label>
 <% end %>
 <% if @option5 != nil %>
-<label><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
+<label class="radio"><%= radio_button :answer, :ans, '5' %><%= @option5.string %></label>
 <% end %>
 <label>コメント<%= text_field :answer, :comment %></label>
 <%# hidden_field :answer, :question_id, { :value => question.id } %>

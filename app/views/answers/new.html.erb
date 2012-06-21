@@ -1,8 +1,7 @@
 <%= javascript_include_tag '/javascripts/new' %>
 
-<h1>アンケートの新規作成</h1>
-<h2>下記からアンケートを新規作成しよう～</h2>
-
+<div class="well">
+<h2>アンケートの新規作成</h2>
 
 <table>
 <%= form_tag({ :action => 'qcreate'}) do %>
@@ -20,8 +19,8 @@
 <tr><th>回答４</th><td><%= text_field :option4, :string %></td></tr>
 <tr><th>回答５</th><td><%= text_field :option5, :string %></td></tr>
 <tr><th></th><td>※回答１から順に埋めていき、例えば２択なら回答３４５は空欄にしてください。</td></tr>
-<tr><th></th><td><%= submit_tag '送信', :class => 'btn' %></td></tr>
+<tr><th></th><td><%= submit_tag '作成', :class => 'btn' %></td></tr>
 <% end %>
 </table>
-
-<p><%= link_to('戻る','/answers/index') %></p>
+</div>
+<p><%= link_to('トップへ戻る','/answers/index') %></p>
