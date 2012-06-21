@@ -13,3 +13,26 @@ two:
   text: 質問２の説明
   category_id: 1
   member_id: 1
+  
+three:
+  id: 3
+  title: 質問３
+  text: 質問３の説明
+  category_id: 1
+  member_id: 2
+  
+  
+four:
+  id: 4
+  title: 質問４
+  text: 質問４の説明
+  category_id: 1
+  member_id: 3
+  
+  
+five:
+  id: 5
+  title: 質問５
+  text: 質問５の説明
+  category_id: 1
+  member_id: 3

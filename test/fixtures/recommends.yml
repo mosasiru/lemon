@@ -3,39 +3,49 @@
 one:
   member_id: 11
   question_id: 1
+  recommend_no: 1
 
 two:
   member_id: 11
   question_id: 1
+  recommend_no: 2
 
 three:
   member_id: 11
   question_id: 1
+  recommend_no: 3
   
 four:
   member_id: 11
   question_id: 1
+  recommend_no: 4
   
 five:
   member_id: 11
   question_id: 1
+  recommend_no: 5
   
 six:
   member_id: 11
   question_id: 1
+  recommend_no: 6
   
 seven:
   member_id: 11
   question_id: 2
+  recommend_no: 7
   
 eight:
   member_id: 11
-  question_id: 2
+  question_id: 3
+  recommend_no: 8
   
 nine:
   member_id: 11
-  question_id: 2
+  question_id: 4
+  recommend_no: 9
   
 ten:
   member_id: 11
-  question_id: 2
+  question_id: 3
+  recommend_no: 10

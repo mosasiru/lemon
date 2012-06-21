@@ -31,8 +31,9 @@ class AnswersController < ApplicationController
         if @answeredString != nil
           @rands = Question.find_by_sql("SELECT * FROM questions WHERE member_id != " + (@member.id).to_s + " and id NOT IN ("+@answeredString+")")
           @rand = @rands[rand(@rands.length)]
-          @reco = Recommend.find_by_sql("SELECT * FROM recommends WHERE member_id = " + (@member.id).to_s + " and question_id NOT IN ("+@answeredString+")")
-          @reco = @reco[rand(@reco.length)]
+          @reco = Recommend.find_by_sql("SELECT * FROM recommends WHERE member_id = " + (@member.id).to_s + " and question_id NOT IN ("+@answeredString+") ORDER BY recommend_no ASC")
+#          @reco = @reco[rand(@reco.length)]
+          @reco = @reco[0]
         end
         if @reco != nil
           @reco = Question.find(@reco.question_id)
