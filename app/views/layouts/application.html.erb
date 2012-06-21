@@ -116,14 +116,66 @@
                   <li><%= link_to "新規作成", "/answers/new" %></li>
                   <% if !user_signed_in? %>
                      <li><%= link_to image_tag("/images/facebookLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:facebook)  %></li>
-                  <li><%= link_to image_tag("/images/twitterLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:twitter)  %></li>
+                 <li><%= link_to image_tag("/images/twitterLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:twitter)  %></li>
                   <% end %>
                 </ul>
               </div><!--/.well -->
-              <div class="well sidebar-nav">
+              <div class="well sidebar-nav" style="text-align:center;">
               	  <h4>↓人気の質問に答えよう↓</h4>
-<p><%= @popular %></p>
-              	  
+              	  <h3>～1位～</h3>
+              	  <span style="text-align:left">
+                   <h3><%= @popQ1.title %></h3>
+		<%= form_tag({ :action => 'acreate/'+@popQ1.id.to_s}) do %>
+		<%= hidden_field :answer, :question_id, { :value => @popQ1.id }%>
+		<%if user_signed_in?%>
+            <%= hidden_field :answer, :member_id, { :value => @member.id } %>
+       <%end%>
+       <% @popOp1.each do |popOp|%>
+		<label><%= radio_button :answer, :ans, popOp.order.to_s %><%= popOp.string %></label>
+       <% end %>
+       <% if false %>
+       		<label>コメント<%= text_field :answer, :comment, :size => 40 %></label>
+       <% end %>
+                <%= submit_tag '送信' %>
+		<% end %> <%#form_tag %>
+
+                   </span>              	  
+              	  <h3>～2位～</h3>
+              	  <span style="text-align:left">
+                   <h3><%= @popQ2.title %></h3>
+		<%= form_tag({ :action => 'acreate/'+@popQ2.id.to_s}) do %>
+		<%= hidden_field :answer, :question_id, { :value => @popQ2.id }%>
+		<%if user_signed_in?%>
+            <%= hidden_field :answer, :member_id, { :value => @member.id } %>
+       <%end%>
+       <% @popOp2.each do |popOp|%>
+		<label><%= radio_button :answer, :ans, popOp.order.to_s %><%= popOp.string %></label>
+       <% end %>
+       <% if false %>
+       		<label>コメント<%= text_field :answer, :comment, :size => 40 %></label>
+       <% end %>
+                <%= submit_tag '送信' %>
+		<% end %> <%#form_tag %>
+
+                   </span>              	  
+              	  <h3>～3位～</h3>
+              	  <span style="text-align:left">
+                   <h3><%= @popQ3.title %></h3>
+		<%= form_tag({ :action => 'acreate/'+@popQ3.id.to_s}) do %>
+		<%= hidden_field :answer, :question_id, { :value => @popQ3.id }%>
+		<%if user_signed_in?%>
+            <%= hidden_field :answer, :member_id, { :value => @member.id } %>
+       <%end%>
+       <% @popOp3.each do |popOp|%>
+		<label><%= radio_button :answer, :ans, popOp.order.to_s %><%= popOp.string %></label>
+       <% end %>
+       <% if false %>
+       		<label>コメント<%= text_field :answer, :comment, :size => 40 %></label>
+       <% end %>
+                <%= submit_tag '送信' %>
+		<% end %> <%#form_tag %>
+
+                   </span>              	  
               </div>
               
             </div><!--/span-->

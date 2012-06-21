@@ -13,3 +13,18 @@ two:
   member_id: 11
   ans: 2
   comment: no!!
+
+three:
+  id: 3
+  question_id: 2
+  member_id: 1
+  ans: 2
+  comment: ""
+  
+four:
+  id: 4
+  question_id: 2
+  member_id: 3
+  ans: 1
+  comment: ""
+

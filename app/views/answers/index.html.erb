@@ -47,8 +47,8 @@ end
 		<%= form_tag({ :action => 'acreate/'+@recommend.id.to_s}) do %>
 		<%= hidden_field :answer, :question_id, { :value => @recommend.id }%>
 		<%if user_signed_in?%>
-                  <%= hidden_field :answer, :member_id, { :value => @member.id } %>
-                <%end%>
+            <%= hidden_field :answer, :member_id, { :value => @member.id } %>
+       <%end%>
 		<% @option1 = @option1s.detect{|x| x.question_id == @recommend.id} %>
 		<% @option2 = @option2s.detect{|x| x.question_id == @recommend.id} %>
 		<% @option3 = @option3s.detect{|x| x.question_id == @recommend.id} %>
