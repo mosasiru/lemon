@@ -1,7 +1,10 @@
 class AnswersController < ApplicationController
   before_filter :authenticate_user!, :except=>[:show, :index, :search, :searchview]
 
+
   def index
+
+
     if user_signed_in?
       @user = current_user.id
       if Member.where(:user_id => @user).exists?
@@ -32,11 +35,47 @@ class AnswersController < ApplicationController
           @rands = Question.find_by_sql("SELECT * FROM questions WHERE member_id != " + (@member.id).to_s + " and id NOT IN ("+@answeredString+")")
           @rand = @rands[rand(@rands.length)]
           @reco = Recommend.find_by_sql("SELECT * FROM recommends WHERE member_id = " + (@member.id).to_s + " and question_id NOT IN ("+@answeredString+") ORDER BY recommend_no ASC")
-#          @reco = @reco[rand(@reco.length)]
+#          @reco = @reco[rand(@reco.length)]   
           @reco = @reco[0]
         end
         if @reco != nil
           @reco = Question.find(@reco.question_id)
+        end
+        @popular = Hash::new
+        @qnum = Question.all.length
+        for i in 1..@qnum
+          @num = Answer.find_all_by_question_id(i).count
+          @popular[i] = @num
+        end
+        @popular = @popular.sort_by{|key,val| -val}
+        if @popular != nil
+          i=0
+          while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+            i=i+1
+          end
+          if i<=@popular.length
+            @id = @popular[i][0]
+            @popQ1 = Question.find(@id)
+            @popOp1 = Option.find_all_by_question_id(@id)
+            i=i+1
+            while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+              i=i+1
+            end
+            if i<=@popular.length
+              @id = @popular[i][0]
+              @popQ2 = Question.find(@id)
+              @popOp2 = Option.find_all_by_question_id(@id)
+              i=i+1
+              while Answer.where(:question_id => @popular[i][0],:member_id=>@member.id).exists?
+                i=i+1
+              end
+              if i<=@popular.length
+                @id = @popular[i][0]
+                @popQ3 = Question.find(@id)
+                @popOp3 = Option.find_all_by_question_id(@id)
+              end
+            end
+          end
         end
       else
 
@@ -56,6 +95,28 @@ class AnswersController < ApplicationController
         @option3s = Option.find_all_by_order(3)
         @option4s = Option.find_all_by_order(4)
         @option5s = Option.find_all_by_order(5)
+      @popular = Hash::new
+      @qnum = Question.all.length
+      for i in 1..@qnum
+        @num = Answer.find_all_by_question_id(i).count
+        @popular[i] = @num
+      end
+      @popular = @popular.sort_by{|key,val| -val}
+      if @popular != nil
+        @id = @popular[0][0]
+        @popQ1 = Question.find(@id)
+        @popOp1 = Option.find_all_by_question_id(@id)
+        if @popular.length > 1
+          @id = @popular[1][0]
+          @popQ2 = Question.find(@id)
+          @popOp2 = Option.find_all_by_question_id(@id)
+          if @popular.length > 2
+            @id = @popular[2][0]
+            @popQ3 = Question.find(@id)
+            @popOp3 = Option.find_all_by_question_id(@id)
+          end
+        end
+      end
         
     end
   end
