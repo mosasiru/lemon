@@ -138,7 +138,74 @@ class AnswersController < ApplicationController
     @option3 = Answer.find_all_by_question_id_and_ans(params[:question_id],3)
     @option4 = Answer.find_all_by_question_id_and_ans(params[:question_id],4)
     @option5 = Answer.find_all_by_question_id_and_ans(params[:question_id],5)
+    @nameOfOption1 = Option.find_by_question_id_and_order(params[:question_id],1)
+    @nameOfOption2 = Option.find_by_question_id_and_order(params[:question_id],2)
+    @nameOfOption3 = Option.find_by_question_id_and_order(params[:question_id],3)
+    @nameOfOption4 = Option.find_by_question_id_and_order(params[:question_id],4)
+    @nameOfOption5 = Option.find_by_question_id_and_order(params[:question_id],5)
+    @member = Member
     
+    @maleOption1 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 1, "members.sex" => 1}, 
+  :include => :member
+)
+
+    @maleOption2 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 2, "members.sex" => 1}, 
+  :include => :member
+)
+
+    @maleOption3 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 3, "members.sex" => 1}, 
+  :include => :member
+)
+
+    @maleOption4 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 4, "members.sex" => 1}, 
+  :include => :member
+)
+
+    @maleOption5 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 5, "members.sex" => 1}, 
+  :include => :member
+)
+
+    
+      @femaleOption1 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 1, "members.sex" => 2}, 
+  :include => :member
+)
+
+    @femaleOption2 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 2, "members.sex" => 2}, 
+  :include => :member
+)
+
+    @femaleOption3 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 3, "members.sex" => 2}, 
+  :include => :member
+)
+
+    @femaleOption4 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 4, "members.sex" => 2}, 
+  :include => :member
+)
+
+    @femaleOption5 = Answer.find(
+  :all, 
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 5, "members.sex" => 2}, 
+  :include => :member
+)
+
   end
 
   def form_tag
