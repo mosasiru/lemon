@@ -5,6 +5,7 @@
 <h2><%= @question.title %></h2>  
 <% if @question.text!="" %>
   <p class="well2"><%= @question.text %></p>
+	
 <% end %>
 <dl>
   <dt>作成者</dt><dd><%= @questioner.username  %>さん (<%= @question.created_at.to_s[0..15]%>) </dd>     
@@ -14,6 +15,9 @@
 
 <%#*<div class="well2" style="width:600px;"><h2 style="text-align: center">皆の回答</h3></div>%>
 
+<h3 class="well2"><%= link_to '→次の質問に答える', '/answers/index' %></h3> 
+
+
 <div id="chartDiv1" style="width:600px; height:400px;"></div>
 
 
@@ -21,8 +25,6 @@
 
 <% if @nameOfOption5 != nil %>
   
-    document.write('<table id="mytable" cellspacing="0" summary="質問の結果">',
-    '<caption>質問の結果 </caption>');
     document.write('<tr>',
     '<th scope="col" abbr="Configurations" class="nobg">選択</th>',
     '<th scope="col" abbr="全体人数">全体人数</th>',
