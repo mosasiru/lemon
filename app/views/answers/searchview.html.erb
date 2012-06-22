@@ -12,8 +12,13 @@
 <tr><th>質問</th><th>投票</th></tr>
 
 <% @questions.each do |question| %>
-<tr><td><%= link_to  question.title , '/answers/show/'+question.id.to_s %></td>
-<% @option1 = @option1s.detect{|x| x.question_id == question.id} %>
+<tr><td>
+    <h4><%= link_to  question.title , '/answers/detail/'+question.id.to_s %></h4>
+    <h6><%= question.text   %></h6>
+    </td>
+
+    
+    <% @option1 = @option1s.detect{|x| x.question_id == question.id} %>
 <% @option2 = @option2s.detect{|x| x.question_id == question.id} %>
 <% @option3 = @option3s.detect{|x| x.question_id == question.id} %>
 <% @option4 = @option4s.detect{|x| x.question_id == question.id} %>

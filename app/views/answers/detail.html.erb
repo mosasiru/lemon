@@ -3,8 +3,9 @@
 <div style="width:600px">
 <div class="well">
 <h2><%= @question.title %></h2>  
-<p class="well2"><%= @question.text %></p>
-
+<% if @question.text!="" %>
+  <p class="well2"><%= @question.text %></p>
+<% end %>
 <dl>
   <dt>作成者</dt><dd><%= @questioner.username  %>さん (<%= @question.created_at.to_s[0..15]%>) </dd>     
   <dt>カテゴリー</dt><dd><%= @category.name %></dd>

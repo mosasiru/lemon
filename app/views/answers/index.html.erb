@@ -22,9 +22,9 @@ else
 end
 %>
 	<% if @recommend == nil %>
-		<%#*<p>質問がありません。</p>%>
+		<p>質問がありません。</p>
 	<% else %>
-		<h3>あなたにおすすめの質問：<%= @recommend.title %></h3>
+		<h3>あなたにおすすめの質問：<%= link_to  @recommend.title , '/answers/detail/'+@recommend.id.to_s  %></h3>
 		<div class="floatleft">
 		<p><%= simple_format(@recommend.text) %></p>
 		</div>		

@@ -64,10 +64,10 @@
 
 
 
-    <link href="images/favicon.ico" rel="shortcut icon">
-    <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
-    <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
-    <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="/images/favicon.ico" rel="shortcut icon">
+    <link href="/images/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
   </head>
   <body>
 
@@ -84,7 +84,7 @@
             <ul class="nav">
               <% if user_signed_in? %>
                 <li><%= link_to "アンケート作成", "/answers/new" %></li>
-                <li><%= link_to "ログアウト", destroy_user_session_path %></li>
+                <li><%= link_to "ログアウト("+@member.username+")", destroy_user_session_path %></li>
               <% else %>
                 <li><%= link_to image_tag("/images/facebookLoginLogo.jpg",:size=>"17x17",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:facebook)  %></li>
                 <li><%= link_to image_tag("/images/twitterLoginLogo.jpg",:size=>"17x17",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:twitter)  %></li>
@@ -130,7 +130,7 @@
             <div class="well sidebar-nav">
               <h6 class="nav-header">人気の質問に答えよう！</h6>
               <div class="well2">
-                <h4>1位:<%= @popQ1.title %></h4>
+                <h4>1位:<%= link_to  @popQ1.title , '/answers/detail/'+@popQ1.id.to_s %></h4>
                 <%= form_tag({ :action => 'acreate/'+@popQ1.id.to_s}) do %>
                   <%= hidden_field :answer, :question_id, { :value => @popQ1.id }%>
                   <%if user_signed_in?%>
@@ -148,7 +148,7 @@
               </div>
               <div class="well2">
 
-                <h4>2位:<%= @popQ2.title %></h4>
+                <h4>2位:<%= link_to  @popQ2.title , '/answers/detail/'+@popQ2.id.to_s %></h4>
                 <%= form_tag({ :action => 'acreate/'+@popQ2.id.to_s}) do %>
                   <%= hidden_field :answer, :question_id, { :value => @popQ2.id }%>
                   <%if user_signed_in?%>
@@ -164,7 +164,7 @@
                 <% end %> <%#form_tag %>
               </div>
               <div class="well2">
-                <h4>3位:<%= @popQ3.title %></h4>
+                <h4>3位:<%= link_to  @popQ3.title , '/answers/detail/'+@popQ3.id.to_s %></h4>
                 <%= form_tag({ :action => 'acreate/'+@popQ3.id.to_s}) do %>
                   <%= hidden_field :answer, :question_id, { :value => @popQ3.id }%>
                   <%if user_signed_in?%>
