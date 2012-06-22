@@ -126,28 +126,6 @@ class AnswersController < ApplicationController
     if user_signed_in?
       @user = current_user.id
       @member = Member.find_by_user_id(@user)
-    else
-      @user = nil
-    end
-    @message = params['message']
-    if params['result'] != nil
-      @questions = Question.find(params['result'])
-      @questions = @questions.reverse
-    else
-      @questions = nil
-    end
-      @answer1 = Answer.find_all_by_ans(1)
-      @answer2 = Answer.find_all_by_ans(2)
-      @answer3 = Answer.find_all_by_ans(3)
-      @answer4 = Answer.find_all_by_ans(4)
-      @answer5 = Answer.find_all_by_ans(5)
-      @answer = Answer.new
-      @category = Category.all
-        @option1s = Option.find_all_by_order(1)
-        @option2s = Option.find_all_by_order(2)
-        @option3s = Option.find_all_by_order(3)
-        @option4s = Option.find_all_by_order(4)
-        @option5s = Option.find_all_by_order(5)
 #人気の質問
         @popular = Hash::new
         @qnum = Question.all.length
@@ -185,6 +163,50 @@ class AnswersController < ApplicationController
             end
           end
         end
+    else
+      @user = nil
+      @popular = Hash::new
+      @qnum = Question.all.length
+      for i in 1..@qnum
+        @num = Answer.find_all_by_question_id(i).count
+        @popular[i] = @num
+      end
+      @popular = @popular.sort_by{|key,val| -val}
+      if @popular != nil
+        @id = @popular[0][0]
+        @popQ1 = Question.find(@id)
+        @popOp1 = Option.find_all_by_question_id(@id)
+        if @popular.length > 1
+          @id = @popular[1][0]
+          @popQ2 = Question.find(@id)
+          @popOp2 = Option.find_all_by_question_id(@id)
+          if @popular.length > 2
+            @id = @popular[2][0]
+            @popQ3 = Question.find(@id)
+            @popOp3 = Option.find_all_by_question_id(@id)
+          end
+        end
+      end
+    end
+    @message = params['message']
+    if params['result'] != nil
+      @questions = Question.find(params['result'])
+      @questions = @questions.reverse
+    else
+      @questions = nil
+    end
+      @answer1 = Answer.find_all_by_ans(1)
+      @answer2 = Answer.find_all_by_ans(2)
+      @answer3 = Answer.find_all_by_ans(3)
+      @answer4 = Answer.find_all_by_ans(4)
+      @answer5 = Answer.find_all_by_ans(5)
+      @answer = Answer.new
+      @category = Category.all
+        @option1s = Option.find_all_by_order(1)
+        @option2s = Option.find_all_by_order(2)
+        @option3s = Option.find_all_by_order(3)
+        @option4s = Option.find_all_by_order(4)
+        @option5s = Option.find_all_by_order(5)
   end
   
   def newuser
