@@ -112,6 +112,7 @@
           </div>
           <div class="span3">
             <div class="well sidebar-nav">
+              <div class="logo">
               <h6>Lemon</h6>
               <ul class="nav nav-list">
                 <%#*<li class="nav-header">Lemon</li>%>
@@ -121,8 +122,10 @@
                 <% else %>
                   <li><%= link_to image_tag("/images/facebookLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:facebook)  %></li>
                   <li><%= link_to image_tag("/images/twitterLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:twitter)  %></li>
-                <% end %>
+                <% end %>                  
               </ul>
+                <%#= image_tag("/images/logo_modify_mini.png",:alt=>"lemonLogo画像")%>
+              </div>
             </div><!--/.well -->
             <div class="well sidebar-nav">
               <h6 class="nav-header">人気の質問に答えよう！</h6>

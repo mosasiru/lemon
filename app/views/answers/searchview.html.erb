@@ -1,19 +1,4 @@
-<h1>アンケート</h1>
-<h2 class="well">アンケートページへようこそ！</h2>
-
-
-<p><span style="background-color:#ffff99"><% if user_signed_in? %><%= @member.username%><% else %>ゲスト<% end %></span>さんこんにちは！</p>
-
-
-<p class="right"><%= link_to('アンケートの新規作成','/answers/new') %></p>
-<p class="right"><% if user_signed_in? %>
-
-	<%#= link_to 'ログアウト(old)', [:destroy, :user_session], {:method => "delete"} %>
-  	<%= link_to 'ログアウト', destroy_user_session_path %>
-
-	<% else %>
-	<%#= link_to 'ログイン(old)', [:new, :user_session] %> <%#= link_to '新規ユーザー登録(old)', [:new, :user_registration]%>
-	<% end %></p>
+<h3 class="well">検索ページ</h3>
 
               <%= form_tag({ :controller => "answers", :action => "search"}, { :method => :get}) do %>
               <%= text_field_tag :keywd, '', {:size => 25, :placeholder => @message}%>で検索
@@ -24,7 +9,7 @@
 
 <table class="table table-striped">
 
-<tr><th>質問</th><th>回答１</th><th>回答２</th><th>回答３</th><th>回答４</th><th>回答５</th><th>投票</th></tr>
+<tr><th>質問</th><th>投票</th></tr>
 
 <% @questions.each do |question| %>
 <tr><td><%= link_to  question.title , '/answers/show/'+question.id.to_s %></td>
@@ -33,36 +18,6 @@
 <% @option3 = @option3s.detect{|x| x.question_id == question.id} %>
 <% @option4 = @option4s.detect{|x| x.question_id == question.id} %>
 <% @option5 = @option5s.detect{|x| x.question_id == question.id} %>
-<td>
-	<% if @option1 != nil %>
-	<%= @answer1.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	-
-	<% end %></td>
-<td>
-	<% if @option2 != nil %>
-	<%= @answer2.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	-
-	<% end %></td>
-<td>
-	<% if @option3 != nil %>
-	<%= @answer3.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	-
-	<% end %></td>
-<td>
-	<% if @option4 != nil %>
-	<%= @answer4.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	-
-	<% end %></td>
-<td>
-	<% if @option5 != nil %>
-	<%= @answer5.select{|x| x.question_id == question.id }.count %>
-	<% else %>
-	-
-	<% end %></td>
 <td>
 <% if user_signed_in? and Question.where(:id => question.id.to_s, :member_id => @member.id).exists?  %>
 あなたの質問に投票することはできません。
@@ -105,5 +60,3 @@
 <% end %>
 
 <p><%= link_to("トップへ戻る","/answers/index") %></p>
-
-;

@@ -300,16 +300,15 @@
       '<% end %>',
     '</div>');
  
-    document.write('<h3 class="demo"><span class="str"><%= @nameOfOption5.string %></span>を選んだ人のコメント</h3>',
+    document.write('<h3 class="demo1"><span class="str"><%= @nameOfOption5.string %></span>を選んだ人のコメント</h3>',
     '<div>',
-    '<br>',
     '<% @option5.each do |option5| %>',
       '<%if option5.comment!=""%>',
         '<% memberId= option5.member_id %>',
-        '<pre><code> <%= option5.comment %> </code>',
-        '<code style="float:right">By:<%=  @member_detail.find(:first, 
-        :conditions => ['members.id = ?', memberId]).username %></code></pre>',
-        '<br>',
+        '<div class="well2"><%= option5.comment %>',
+         '<span class="pull-right">By:<%=  @member_detail.find(:first,
+        :conditions => ["members.id = ?", memberId]).username %></span>',
+        '</div>',
         '<%end%>',
       '<% end %>',
     '</div>');

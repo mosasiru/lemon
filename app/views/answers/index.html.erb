@@ -3,11 +3,12 @@
 
 <%#ここからsearchviewと同じ%>
 
-
 <%#ここまでsearchview%>
-
+<% if !user_signed_in? %>
+  <h3><span class="str">アンケートサイト</span>へようこそ！</h3> 回答・結果の閲覧にはログインが必要です。
+<% end%>
 <div id="recommend" class="well" style="display:none;">	
-	
+
 <%
 if user_signed_in?
     if @reco != nil
@@ -69,7 +70,7 @@ end
 
 <% @questions.each do |question| %>
 <tr><td>
-    <h4><%= link_to  question.title , '/answers/show/'+question.id.to_s %></h5>
+    <h4><%= link_to  question.title , '/answers/detail/'+question.id.to_s %></h5>
     <br>
     <h6><%= question.text   %></h6>
   </td>

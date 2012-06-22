@@ -504,8 +504,8 @@ class AnswersController < ApplicationController
     @answer = Answer.new(params[:answer])
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to("/answers/show/"+params[:question_id], :notice => 'answer was successfully created.')}
-        format.xml  { render :xml => @answer, :status => :created, :location => '/answers/show/'+params[:question_id]}
+        format.html { redirect_to("/answers/detail/"+params[:question_id], :notice => 'answer was successfully created.')}
+        format.xml  { render :xml => @answer, :status => :created, :location => '/answers/detail/'+params[:question_id]}
 #        redirect_to("/answers/show/" + params[:question_id] )
       else
         format.html { render :action => "index"}
