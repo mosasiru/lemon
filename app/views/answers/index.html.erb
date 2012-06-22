@@ -5,7 +5,8 @@
 
 <%#ここまでsearchview%>
 <% if !user_signed_in? %>
-  <h3><span class="str">アンケートサイト</span>へようこそ！</h3> 回答・結果の閲覧にはログインが必要です。
+  <h3>アンケートサイトへようこそ！</h3>
+  <h6>回答・結果の閲覧にはログインが必要です。</h6>
 <% end%>
 <div id="recommend" class="well" style="display:none;">	
 
@@ -64,14 +65,13 @@ end
 
 <%#ここからsearchviewと同じ%>
 
-<table class="table table-striped">
+<table class="table table-striped index-table">
 
 <tr><th>質問</th><th>投票</th></tr>
 
 <% @questions.each do |question| %>
 <tr><td>
-    <h4><%= link_to  question.title , '/answers/detail/'+question.id.to_s %></h5>
-    <br>
+    <h4><%= link_to  question.title , '/answers/detail/'+question.id.to_s %></h4>
     <h6><%= question.text   %></h6>
   </td>
 <% @option1 = @option1s.detect{|x| x.question_id == question.id} %>

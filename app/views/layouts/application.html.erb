@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,8 +86,8 @@
                 <li><%= link_to "アンケート作成", "/answers/new" %></li>
                 <li><%= link_to "ログアウト", destroy_user_session_path %></li>
               <% else %>
-                <li><%= link_to image_tag("/images/facebookLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:facebook)  %></li>
-                <li><%= link_to image_tag("/images/twitterLoginLogo.jpg",:size=>"30x30",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:twitter)  %></li>
+                <li><%= link_to image_tag("/images/facebookLoginLogo.jpg",:size=>"17x17",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:facebook)  %></li>
+                <li><%= link_to image_tag("/images/twitterLoginLogo.jpg",:size=>"17x17",:alt=>"lemonLogo画像")+'Log in', user_omniauth_authorize_path(:twitter)  %></li>
               <% end %>
             </ul>
 
