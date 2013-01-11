@@ -101,7 +101,7 @@ GEM
     less-rails (2.2.6)
       actionpack (>= 3.1)
       less (~> 2.2.0)
-    libv8 (3.15.11.1)
+    libv8 (3.11.8.4)
     listen (0.7.1)
     lumberjack (1.0.2)
     mail (2.4.4)
@@ -252,7 +252,7 @@ DEPENDENCIES
   hirb-unicode
   jquery-rails
   less-rails
-  libv8
+  libv8 (~> 3.11.8)
   mysql2
   omniauth
   omniauth-facebook
