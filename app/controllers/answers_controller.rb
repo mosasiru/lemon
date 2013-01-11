@@ -25,17 +25,17 @@ class AnswersController < ApplicationController
         @option5s = Option.find_all_by_order(5)
         @answered = Answer.find_all_by_member_id(@member.id)
         @answeredString = ""
-        
+
         @answered.each do |answered|
           @answeredString = @answeredString +","+ answered.question_id.to_s
         end
         @answeredString = @answeredString.slice(1,@answeredString.length)
-        
+
         if @answeredString != nil
           @rands = Question.find_by_sql("SELECT * FROM questions WHERE member_id != " + (@member.id).to_s + " and id NOT IN ("+@answeredString+")")
           @rand = @rands[rand(@rands.length)]
           @reco = Recommend.find_by_sql("SELECT * FROM recommends WHERE member_id = " + (@member.id).to_s + " and question_id NOT IN ("+@answeredString+") ORDER BY recommend_no ASC")
-#          @reco = @reco[rand(@reco.length)]   
+#          @reco = @reco[rand(@reco.length)]
           @reco = @reco[0]
         end
         if @reco != nil
@@ -118,7 +118,7 @@ class AnswersController < ApplicationController
           end
         end
       end
-        
+
     end
   end
 
@@ -208,7 +208,7 @@ class AnswersController < ApplicationController
         @option4s = Option.find_all_by_order(4)
         @option5s = Option.find_all_by_order(5)
   end
-  
+
   def newuser
   @user = current_user.id
     if user_signed_in?
@@ -346,9 +346,9 @@ class AnswersController < ApplicationController
     @nameOfOption3 = Option.find_by_question_id_and_order(params[:question_id],3)
     @nameOfOption4 = Option.find_by_question_id_and_order(params[:question_id],4)
     @nameOfOption5 = Option.find_by_question_id_and_order(params[:question_id],5)
-    
+
   end
-  
+
   def detail
     @user = current_user.id
     @question = Question.find(params[:question_id])
@@ -366,65 +366,65 @@ class AnswersController < ApplicationController
     @nameOfOption5 = Option.find_by_question_id_and_order(params[:question_id],5)
     @member = Member.find_by_user_id(@user)
     @member_detail = Member
-    
+
     @maleOption1 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 1, "members.sex" => 1}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 1, "members.sex" => 1},
   :include => :member
 )
 
     @maleOption2 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 2, "members.sex" => 1}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 2, "members.sex" => 1},
   :include => :member
 )
 
     @maleOption3 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 3, "members.sex" => 1}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 3, "members.sex" => 1},
   :include => :member
 )
 
     @maleOption4 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 4, "members.sex" => 1}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 4, "members.sex" => 1},
   :include => :member
 )
 
     @maleOption5 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 5, "members.sex" => 1}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 5, "members.sex" => 1},
   :include => :member
 )
 
-    
+
       @femaleOption1 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 1, "members.sex" => 2}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 1, "members.sex" => 2},
   :include => :member
 )
 
     @femaleOption2 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 2, "members.sex" => 2}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 2, "members.sex" => 2},
   :include => :member
 )
 
     @femaleOption3 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 3, "members.sex" => 2}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 3, "members.sex" => 2},
   :include => :member
 )
 
     @femaleOption4 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 4, "members.sex" => 2}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 4, "members.sex" => 2},
   :include => :member
 )
 
     @femaleOption5 = Answer.find(
-  :all, 
-  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 5, "members.sex" => 2}, 
+  :all,
+  :conditions => {"answers.question_id" => params[:question_id], "answers.ans" => 5, "members.sex" => 2},
   :include => :member
 )
 

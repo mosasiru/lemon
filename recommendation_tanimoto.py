@@ -20,7 +20,6 @@ while itemfake[j] != None:
 	item[j] = itemfake[j]
 	j = j+1
 	itemfake[j] = c.fetchone()
-#print "item "+ str(item)
 
 #質問リスト(質問:作成者)
 c.execute("SELECT id, member_id FROM questions")
@@ -29,12 +28,10 @@ j = c.fetchone()
 while j != None:
 	q_ids[j['id']] = j['member_id']
 	j = c.fetchone()
-#print "q_ids " + str(q_ids)
 
 #メンバーIDの最大値
 c.execute("SELECT MAX(member_id) from answers")
 n_member = c.fetchone().values()[0]
-#print "n_member "+ str(n_member)
 
 #質問番号の最大値
 c.execute("SELECT MAX(id) from questions")
@@ -50,7 +47,6 @@ for member in range (1,n_member+1):
 		if item[it]['member_id'] == member:
 			p_questions[member][item[it]['question_id']] = item[it]['ans']
 			j = j+1
-#print "p_questions "+str(p_questions)
 
 from math import sqrt
 import random
@@ -68,10 +64,8 @@ def sim_tanimoto(question,p1,p2):
 				si[q1]=1.0
 	# count the number of the element
 	n=len(si)*1.0
-	#print "n=" + str(n)
 	
 	#if nothing maches between the two, then return 0
-#	if n1 < 10 or n2 < 10: return 0
 	if n==0: return 0
 	
 	r = n/(n1 + n2 - n)
@@ -92,11 +86,12 @@ def getRecommendations(question,person):
 	osusume = {}
 	isinlist = {}
 	j = 1
+	tm = topMatches(question, person)
 	while k+1 < n_member and len(osusume)<10:
 		#print "k" + str(k)
 		bangou = range(1,n_question+1)
 		random.shuffle(bangou)
-		if topMatches(question, person)[k][0] == 0:
+		if tm[k][0] == 0:
 			for q in bangou:
 				if len(osusume) < 10:
 					if q in q_ids:
@@ -105,8 +100,7 @@ def getRecommendations(question,person):
 							isinlist[q] = 1.0
 							j = j+1
 		else:
-			niteruhito = topMatches(question, person)[k][1]
-			#print "niteruhito "+str(niteruhito)
+			niteruhito = tm[k][1]
 			si={}
 			for q1 in question[person]:
 				for q2 in question[niteruhito]:
@@ -120,10 +114,7 @@ def getRecommendations(question,person):
 						isinlist[q] = 1.0
 						j = j+1
 		k = k+1
-#	print "osusume=" + str(osusume)
 	return osusume
-#print topMatches(p_questions, 2)
-#print getRecommendations(p_questions,2)
 
 # データ登録
 def dataRegister(person):
@@ -146,13 +137,6 @@ def dataRegister(person):
 		db.commit()
 		k = k+1
 	
-	#i = 1
-	#for j in bangou:
-	#	if i <= 10:
-	#		if j in osusume:
-	#			c.execute("""INSERT INTO recommends(member_id, question_id) VALUES ('%s','%s')"""%(person,osusume[j]))
-	#			db.commit()
-	#			i = i+1
 
 for i in range (1, n_member+1):
 	dataRegister(i)
